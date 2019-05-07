@@ -8,11 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.welljoint.entity.User;
 import com.welljoint.service.LoginService;
 
-/** 
- * @version  
- * @time 2018-2-28 下午5:57:07 
- * @describe:控制器
- */
 @Controller  //註解為控制器
 @RequestMapping(value="/login")    //截獲帶有/login的請求
 public class LoginController {
@@ -20,7 +15,7 @@ public class LoginController {
     @Autowired
     LoginService loginService;  //注入service層
 
-    @RequestMapping(method=RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String get(){  //用來返回一個頁面
         return "login";  //返回指向login.jsp頁面
     }

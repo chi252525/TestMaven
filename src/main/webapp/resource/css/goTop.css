@@ -1,0 +1,47 @@
+
+ 
+/* 56px */
+.toTop-arrow {
+	width: 3.5rem;
+	height: 3.5rem;
+	padding: 0;
+	margin-bottom:50px;
+	border: 0;
+/* 	border-radius: 50%; */
+	opacity: 0.9;
+	background: #fff;
+	cursor: pointer;
+	position:fixed;
+	right: 0;
+	bottom: 1rem;
+	display: none;
+	box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+.toTop-arrow::before, .toTop-arrow::after {
+	width: 31px;
+	height: 7px;
+	border-radius: 3px;
+	background: #000;
+	position: absolute;
+	content: "";
+}
+.toTop-arrow::before {
+	transform: rotate(-45deg) translate(0, -50%);
+	left: 0.4rem;
+}
+.toTop-arrow::after {
+	transform: rotate(45deg) translate(0, -50%);
+	right: 0.4rem;
+}
+.toTop-arrow:focus,.toTop-arrow:hover{outline: none;background: #eee;}
+@media( max-width:767px){
+	.toTop-arrow{
+	    width: 40px;
+		height:40px;
+	}
+	.toTop-arrow::before, .toTop-arrow::after{
+	    width:20px;
+	    height:5px;
+	}
+    
+}

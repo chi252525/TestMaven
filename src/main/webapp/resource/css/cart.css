@@ -1,0 +1,149 @@
+.ulList{
+    margin:0 auto;
+    margin-bottom: 15px;
+    text-align: left;
+}
+#prod_list h5 a{
+    color: #2a2a2a;
+}
+#prod_list .row{
+	margin-left: 0;
+	margin-right:0;
+}
+.ulList p{
+	margin-bottom: 5px;
+}
+.ulList .grid_3 {
+  position: relative;
+}
+.ulList li:nth-child(odd){
+	background: #f4f4f4;
+	border-top: 2px solid #f1f1f1;
+   	border-bottom: 2px solid #f1f1f1;
+}
+
+.ulList li{
+	padding-top: 5px;
+	margin-bottom: 10px;
+}
+.ulList li.totalQty{
+	margin: 20px 0;
+}
+.item_image img{
+    width: 100%;
+/* 	    max-width: 200px; */
+}
+.item_image,.item_image + .grid_5{
+    margin-bottom: 16px;
+}
+.item_image,.item_image + .grid_5 h5{
+    margin-bottom: 8px;
+}
+.totalQty .note{
+	font-size: 20px;
+}
+.totalQty{   /* 標灰底 */
+    background-color: #e4e4e4;
+    padding:6px 0;
+}
+.totalQty p{
+	margin-bottom:0;
+}
+.totalQty dl dt{
+    text-align: left;
+}
+.totalQty dl{
+    padding: 5px 0px;
+}
+.totalQty dl{
+    text-align: center;
+    overflow: hidden;
+}
+.totalQty dl dd:last-child, .form_style_03t dl dd:last-child{
+    float: left;
+    text-align: right;
+}
+.flexblock{
+	 display: -webkit-box;
+	 display: -webkit-flex;
+	 display: -ms-flexbox;
+	 display: flex;
+}
+.flexblock .flex1{
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+.note{ 
+	color: #d93800; 
+	padding: 0 5px;
+}
+ul{
+    list-style-type:none;
+}
+li.row{
+	margin-left: 0;
+	margin-right: 0;
+}
+.qty{
+	padding:0 8px;
+	font-weight: bolder;
+}
+.fa.fa-trash{
+	font-size: 24px;
+} 
+.orderInfo label{
+	font-weight: bold;
+}
+.orderNumber .badge-pill{
+    width: auto;
+    height: auto;
+    font-size: 14px;
+    padding: 5px 10px;
+}
+.card-header:first-child {
+    background: #222;
+    color: #fff;
+}
+.card-header {
+    padding: 10px;
+}
+.card-body p {
+    margin-bottom:8px;
+}
+figcaption{
+    font-size: 2.5rem;
+   	font-weight: bold
+}
+.checkOrder{
+	text-align: center;
+}
+.checkOrder #attrnote{
+	font-size: 15px;
+}
+.checkOrder p{
+	margin-bottom: 0px;
+}
+#order_box p{
+	margin-bottom: 2px;
+}
+.allInfo{
+	background-color: #eee;
+}
+.checkout p{
+	margin-bottom: 0;
+}
+.checkout .col-6{
+	padding-left:0;
+	padding-right:0;
+}
+@media(max-width:767px){
+	figcaption{
+	    font-size: 2rem;
+	}
+	.checkout .item_image{
+		padding-right: 0;
+	}
+}
+

@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.product.model.ProductVO" table="dbo.Products" >
+    <class name="com.welljoint.entity.ProductVO" table="dbo.Products" >
         <id name="id" column="Id"> 
         <generator class="identity"></generator>
         </id>

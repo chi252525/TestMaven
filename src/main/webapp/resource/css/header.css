@@ -1,0 +1,10 @@
+ #BackTop{
+   z-index:200;}
+   
+   #navbar{
+   z-index:100;
+   }
+   #cart_navbar{
+   z-index:6;
+   opacity:0.9;
+   }

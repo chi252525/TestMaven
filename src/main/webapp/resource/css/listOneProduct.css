@@ -1,0 +1,97 @@
+@charset "BIG5";
+img {
+	float: left;
+}
+
+#card {
+	border-bottom: 1px solid rgba(0, 0, 0, .125);
+}
+	
+	#qty{
+		padding: 0 8px;
+		font-weight: bolder;
+	}
+	input[type=checkbox],input[type=radio] {
+		visibility: hidden;
+		display: none;
+	}
+	.attr_css label:hover,.attr_css input[type=radio]:checked+label,.attr_css input[type=checkbox]:checked+label{
+		color: #212529;
+		background-color: #ffc107;
+		border-color: #ffc107;
+	}
+	
+	.attr_css label {
+		margin-right: 10px;
+		display: inline-table;
+		cursor: pointer;
+		z-index: 1;
+		color: #222;
+		background-color: transparent;
+		background-image: none;
+		border:1px solid  #ffc107;
+		transition:.15s ease-in-out;
+		padding: .5rem 1rem;
+		font-size: 1rem;
+		border-radius: .3rem;
+	}
+	.buttonQty{
+		text-align: right;
+	}
+	.btn-outline-warning{
+		color: #222;
+	}
+	.accordion .flex-wrap{
+		align-items: center;
+	}
+	.title{
+		margin-right:10px;
+	}
+	.proInfo .badge{
+		font-size: 15px;
+	}
+	span.soldOut{
+	    position: absolute;
+	    top: 5px;
+	    left: 5px;
+	}
+	@media only screen and (min-width: 992px) {
+		.choice{
+			display: flex;
+			align-items: center;
+		}
+		#show_prices{
+			text-align: right;
+		}
+		.proPrice{
+			padding-right:0;
+		}
+		
+	}
+	@media only screen and (max-width: 991px) {
+		.leftMeun{
+			margin-bottom: 20px;
+		}
+		.buttonQty{
+			text-align: left;
+			margin-bottom:10px;
+		}
+		.choice{
+			clear: both;
+		}
+		.attr_css{
+			display: inline-block;
+			float: left;
+		}
+	}
+	@media only screen and (max-width: 767px) {
+		.title{
+			font-size: 16px;
+		}
+		.attr_css label{
+			padding: 5px;
+		}
+		.buttonQty .btn{
+			padding: 3px 8px;
+		}
+	}

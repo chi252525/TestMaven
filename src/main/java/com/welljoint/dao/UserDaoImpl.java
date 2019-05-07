@@ -20,7 +20,6 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao{
         super.setSessionFactory(sessionFactory);
     }
 
-    @Override
     public User find(String userName,String password){
         //注意：以下是HQL語句
         List<?> users = getHibernateTemplate().find("from User where userName=? and password=?",userName,password);

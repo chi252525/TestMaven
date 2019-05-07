@@ -1,0 +1,75 @@
+@charset "BIG5";
+	.indexForm{
+		background: #fafafa;
+	    padding: 15px;
+	    margin-bottom:3rem;
+	}
+	
+	form[name="shoppingform"] i{
+		font-size: 17px;
+	    color: #164B92;
+	}
+	form[name="shoppingform"] label{
+		letter-spacing: 1px;
+		font-size:16p;
+	}	
+	/*datepicker*/
+    @media( min-width:768px){
+	    .datepicker{
+		    width: 100%;
+	    	max-width: 525px;
+	    }
+	    .datepicker .table-condensed{
+	    	width: 100%;
+	    }
+    
+    }
+    .datepicker.dropdown-menu{
+    	border: 2px solid #136fa9;
+    	box-shadow: 1px 3px 10px #777;
+    }
+    .datepicker-dropdown:before{
+    	border-bottom-color: #136fa9;
+    }
+    .datepicker table tr{
+    	margin-bottom:10px;
+    }
+    .datepicker table tr td.active.active{
+    	background: #136fa9;
+    }
+    .datepicker table tr td.today{
+    	background: #fde19a;
+    }
+    footer{
+    	padding: 5px 0;
+    }
+    .bottomImg .img-fluid{
+    	width:100%;
+    	height:auto;
+    }
+    .btn_radio input[type=radio] {
+	    display: none;
+	}
+	.btn_radio label{
+		width:100%;
+		background-color: transparent;
+	}
+	.btn_radio input[type=radio]:checked + label.btn-warning{
+		background-color: #ffc107;
+	}
+    
+    @media( min-width:768px){
+	    .indexForm{
+	        margin: 3rem auto;
+		}
+    }
+    
+    @media( max-width:767px){
+	    .bottomImg{
+	    	padding-bottom: 15px;
+	    	margin-bottom:35px;
+	    }
+	    .indexForm{
+		    margin-bottom:0;
+		}
+    }

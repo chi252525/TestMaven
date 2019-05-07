@@ -1,0 +1,86 @@
+@charset "BIG5";
+.card:hover{
+	background-color:#fcfcfc;
+}
+@media only screen and (max-width: 991px) {
+	.card-title {
+		font-size: 15px;
+	}
+	.card-text {
+		font-size: 14px;
+	}
+	.leftMeun{
+		margin-bottom: 20px;
+	}
+}
+@media only screen and (min-width: 992px) {
+  	.card-body{
+	  	height:200px;
+	}
+}
+
+/* °Ó«~°Ï */
+.proList .card{
+	position: relative;
+}
+.proList .card .badge{
+   	white-space: initial;
+}
+.proList .card .badge-danger{
+	position: absolute;
+    top: 5px;
+    left: 5px;
+}
+.card-text{
+	color: #222;
+   	font-size: 16px;
+   	line-height: 22px;
+}
+.card-body{
+	background: #f3f3f3;
+}
+.card-title,.card-text{
+	text-align: center;
+}
+
+.slider{
+	margin-bottom: 20px;
+}
+.proRow{
+    margin-bottom: 25px;
+    width:100%;
+}
+.card-text {
+    color: #555;
+    font-size: 16px;
+    line-height: 22px;
+    padding-top: 5px;
+    margin-bottom: 0;
+    text-align: center;
+}
+.cateTitle{
+    border-bottom: 2px solid #222;
+}
+.cateTitle h5{
+	margin-bottom:0;
+    background-color: #222;
+    color:#fff;
+    display: inline;
+    padding: 5px 15px;
+    border-radius: 4px 4px 0px 0px ;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

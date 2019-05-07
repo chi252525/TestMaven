@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.welljoint.dao.ProductDAO_interface;
 import com.welljoint.entity.ProductVO;
 @Service
-public class ProductService {
+public class ProductService implements ProductService_interface{
 	
 	@Autowired
 	private ProductDAO_interface dao;

@@ -6,9 +6,11 @@ import javax.annotation.Resource;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.stereotype.Repository;
+
 import com.welljoint.entity.ProductVO;
 
-
+@Repository
 public class ProductHibernateDAO extends HibernateDaoSupport implements ProductDAO_interface{
 	private static final String GET_ALL_STMT="from ProductVO where orderdisplay=1 order by sequence ASC";
 	private static final String DELETE = "delete from ProductVO where Id =?";	
@@ -22,50 +24,43 @@ public class ProductHibernateDAO extends HibernateDaoSupport implements ProductD
     public void setSessionFactoryOverride(SessionFactory sessionFactory) {
         super.setSessionFactory(sessionFactory);
     }
-	@Override
+    @Override
 	public List<ProductVO> getAll() {
 		List<ProductVO> pVOs = (List<ProductVO>) getHibernateTemplate().find(GET_ALL_STMT);
         return pVOs;
 	}
 
-	
-	@Override
+    @Override
 	public List<ProductVO> getProductKeys() {
 		List<ProductVO> pVOs = (List<ProductVO>) getHibernateTemplate().find(SELECT_PRODUCTCLASSKEY);
         return pVOs;
 	}
-
-	@Override
+    @Override
 	public List<ProductVO> findbyProductClassKey(String productClassKey) {
 		List<ProductVO> pVOs = (List<ProductVO>) getHibernateTemplate().find(FINBYPRODUCTCLASSKEY,productClassKey);
         return pVOs;
 	}
-
-	@Override
+    @Override
 	public void insert(ProductVO productVO) {
 		getHibernateTemplate().saveOrUpdate(productVO);
 		
 	}
-
-	@Override
+    @Override
 	public void update(ProductVO productVO) {
 		getHibernateTemplate().update(productVO);
 		
 	}
-
-	@Override
-	public void delete(String id) {
+    @Override
+    public void delete(String id) {
 		ProductVO pVO=getHibernateTemplate().get(ProductVO.class, id);
 		getHibernateTemplate().delete(pVO);
 	}
-
-	@Override
+    @Override
 	public ProductVO findbyProductName(String productName) {
 		ProductVO pVO = (ProductVO) getHibernateTemplate().find(FINBYPRODUCTNAME,productName);
         return pVO;
 	}
-
-	@Override
+    @Override
 	public ProductVO findbyId(Integer id) {
 		ProductVO pVO=getHibernateTemplate().get(ProductVO.class, id);
 		return pVO;
