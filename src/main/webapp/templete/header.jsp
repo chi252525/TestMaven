@@ -38,7 +38,7 @@ if (buylist != null && (buylist.size() > 0)) {
         </button>-->
         <ul class="navbar-nav ml-auto  mt-lg-0">
             <li class="">
-              <a class="nav-link" href="<%=request.getContextPath()%>/frontstage/AboutStore.jsp"><i class="fa fa-home"></i>&nbsp;&nbsp;關於我們</a>
+              <a class="nav-link" href="<%=request.getContextPath()%>/AboutStore"><i class="fa fa-home"></i>&nbsp;&nbsp;關於我們</a>
             </li>
             <li class="">
               <a class="nav-link" href="<%=request.getContextPath()%>/frontstage/showmeal/showMeal.jsp"><i class=" fas fa-clipboard"></i>&nbsp; 訂購紀錄</a>
@@ -88,15 +88,4 @@ $(function(){
 			</div>
 		</div>
 	</div>
-<%-- <c:if test="${not empty shoppingcart}"> --%>
-<!-- <!-- fixed-bottom cart  -->
-<!-- <nav class="navbar navbar-dark bg-dark  fixed-bottom" id="cart_navbar"> -->
-<!--  <div class="navbar-header"> -->
-<%--   <a class="navbar-brand" href="<%=request.getContextPath()%>/frontstage/Cart.jsp"> --%>
-<!--   <i class="fa fa-shopping-cart text-danger" style="font-size:30px"></i> -->
-<%--    <b>購物車:</b><%=buylist.size() %>總計:NT.<%=invoicetotal_inloop_s%> --%>
-<!--   </a> -->
-<!--   </div> -->
-<!-- </nav> -->
-<%-- </c:if> --%>
 <%} %>
