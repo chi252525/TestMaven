@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.welljoint.entity.AttributeGroupVO" table="dbo.Attributegroup" >
+        <id name="id" column="ID" type="string" >
+        </id>
+        <property name="attributesList" column="Attributeslist" />
+        <property name="multiple_choice" column="Multiple_Choice" />
+        <property name="description" column="Description" />
+        <property name="sequence" column="sequence" />
+    </class>
+</hibernate-mapping>

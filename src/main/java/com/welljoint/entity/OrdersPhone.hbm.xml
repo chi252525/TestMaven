@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.welljoint.entity.OrdersPhoneVO"
+		table="dbo.OrdersPhone">
+		<id name="ordersNum" column="ordersNum" type="string">
+		</id>
+		<set name="opdVOs" table="dbo.OrderPhoneDetail" lazy="false" cascade="all"
+			inverse="false" order-by="id asc">
+			<key>
+				<column name="ordersNum" />
+			</key>
+			<one-to-many class="com.welljoint.entity.OrderPhoneDetailVO" />
+		</set>
+		<property name="name" column="name" />
+		<property name="store" column="store" />
+		<property name="invoicePeriod" column="invoicePeriod" />
+		<property name="invoicesNum" column="invoicesNum" />
+		<property name="mealNum" column="mealNum" />
+		<property name="orderDate" column="orderDate" />
+		<property name="orderer" column="orderer" />
+		<property name="phoneNum" column="phoneNum" />
+		<property name="processStatus" column="processStatus" />
+		<property name="paymentStatus" column="paymentStatus" />
+		<property name="invoicesDate" column="invoicesDate" />
+		<property name="invoicesTotal" column="invoicesTotal" />
+		<property name="value" column="value" />
+		<property name="note" column="note" />
+		<property name="customerValue" column="customerValue" />
+		<property name="orderStatus" column="orderStatus" />
+		<property name="orderStatusKey" column="orderStatusKey" />
+		<property name="status" column="status" />
+		<property name="toolCode" column="toolCode" />
+		<property name="loveCode" column="loveCode" />
+		<property name="tax" column="tax" />
+		<property name="payBy" column="payBy" />
+		<property name="cancel" column="cancel" />
+		<property name="internalNumber" column="internalNumber" />
+		<property name="reprintNumber" column="reprintNumber" />
+		<property name="takeTime" column="takeTime" />
+		<property name="orderBy" column="orderBy" />
+		<property name="randomNum" column="randomNum" />
+		<property name="sell_No" column="sell_No" />
+		<property name="TC8_ReturnMessage" column="TC8_ReturnMessage" />
+		<property name="mealQrcode" column="mealQrcode" />
+		<property name="uuid" column="uuid" />
+	</class>
+</hibernate-mapping>

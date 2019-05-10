@@ -34,8 +34,7 @@
     <section>
       <div class="container indexForm">
         <div class="col-lg-6 offset-lg-3 col-md-12 col-sm-12">
-<!-- ============================For輕井澤展示需要====================================== -->
-<form method="post"  name="shoppingform" enctype="multipart/form-data">
+<form method="post" action="<%=request.getContextPath()%>/productEShop" name="shoppingform" enctype="x-www-form-urlencoded">
 	<div class="form-group">
 		<p><small class="text-muted-color">* </small><span>請選擇內用或外帶</span></p>
 		<div class="row btn_radio">
@@ -47,19 +46,17 @@
 				 <input type="radio" id="takeout" name="orderstatus" value="外帶">
 				 <label for="takeout" class="btn btn-lg btn-warning">外帶</label>
 			 </div>
+			 <sf:errors path="orderstatus"></sf:errors>
     	</div>
-		
 		 <label for="internalNumber">桌號 (選填)</label>
-		 <input name="internalNumber" class="form-control" id="internalNumber"  type="text" >
+		 <input name="internalNumber" class="form-control" id="internalNumber"  type="text" ><sf:errors path="internalNumber"></sf:errors>
  	</div>
-	 <input name="store" type="hidden" id="store" value="台中店">
-	 <input name="storename" type="hidden" id="storename" value="輕井澤">
-	 <input name="value" type="hidden" id="value" value="12345678">
-	 <input name="action" type="hidden" value="ready">
 	 <button type="submit" class="btn btn-primary btn-lg btn-block">開始訂購&nbsp;</button>
  </form>
-<!-- ============================For輕井澤展示需要====================================== --> 
  		</div>
+ 		
+ 		
+ 		
 	</div>
     </section>
 		<section class="bottomImg" style="text-align: center;background: #222;padding-top: 10px;">

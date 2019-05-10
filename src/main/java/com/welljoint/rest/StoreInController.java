@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.welljoint.entity.StoreInformationVO;
 import com.welljoint.service.StoreInformationService_interface;
 
-@Controller  //註解為控制器
+@Controller  
 public class StoreInController {
 	@Autowired
     StoreInformationService_interface storeSvc;  //注入service層

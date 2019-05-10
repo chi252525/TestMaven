@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import com.welljoint.entity.ProductVO;
 import com.welljoint.entity.StoreInformationVO;
 @Repository
 public class StoreInformationHibernateDAO extends HibernateDaoSupport implements StoreInformationDAO_interface{
@@ -36,7 +37,7 @@ public class StoreInformationHibernateDAO extends HibernateDaoSupport implements
 
     @Override
 	public StoreInformationVO findByPrimaryKey(Integer id) {
-		StoreInformationVO storeInformationVO = (StoreInformationVO) getHibernateTemplate().find(FINBYPRIMARYKEY,id);
+		StoreInformationVO storeInformationVO = (StoreInformationVO) getHibernateTemplate().get(StoreInformationVO.class,id);
         return storeInformationVO;
 	}
 

@@ -63,7 +63,7 @@ public class ProductService implements ProductService_interface{
     	 dao.update(productVO);
     }
     
-    public List<ProductVO> getProductKeys(){
+    public List<String> getProductKeys(){
 		return dao.getProductKeys();
 	}
     

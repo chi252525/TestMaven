@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.welljoint.entity.MealNum_pofferVO" table="dbo.MealNum_POffer" >
+        <id name="id" column="Id">
+        <generator class="identity"></generator>
+        </id>
+        <property name="date" column="Date" />
+        <property name="mealnum_current" column="MealNum_Current" />
+        <property name="mealnum_initial" column="MealNum_initial" />
+        <property name="counter" column="Counter" />
+        <property name="changeStamp" column="ChangeStamp" />
+    </class>
+</hibernate-mapping>

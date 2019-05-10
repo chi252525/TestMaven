@@ -1,6 +1,7 @@
 package com.welljoint.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.welljoint.entity.ProductVO;
 
@@ -15,7 +16,7 @@ public interface ProductService_interface {
     public List<ProductVO> findbyProductClassKey(String productClassKey);
     public List<ProductVO> getAll();
     public void update(ProductVO productVO);
-    public List<ProductVO> getProductKeys();
+    public List<String> getProductKeys();
     public ProductVO findbyProductName(String productName);
     public ProductVO findbyId(Integer id);
 }

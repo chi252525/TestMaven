@@ -1,9 +1,8 @@
 package com.welljoint.dao;
 
-import java.util.ArrayList;
 import java.util.List;
+
 import javax.annotation.Resource;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
@@ -12,11 +11,10 @@ import com.welljoint.entity.ProductVO;
 
 @Repository
 public class ProductHibernateDAO extends HibernateDaoSupport implements ProductDAO_interface{
-	private static final String GET_ALL_STMT="from ProductVO where orderdisplay=1 order by sequence ASC";
+	private static final String GET_ALL_STMT="from ProductVO where orderdisplay=1 order by ProductClassKey,sequence ASC";
 	private static final String DELETE = "delete from ProductVO where Id =?";	
-//	private static final String SELECT_PRODUCTCLASSKEY= "select distinct ProductClassKey,ProductClass from ProductVO";
-	private static final String SELECT_PRODUCTCLASSKEY="select distinct productClasskey,productClass from ProductVO";
-	private static final String FINBYPRODUCTCLASSKEY="from ProductVO WHERE productClasskey=? and orderdisplay=1 ORDER BY sequence ASC";
+	private static final String SELECT_PRODUCTCLASSKEY="select distinct productClasskey from ProductVO";
+	private static final String FINBYPRODUCTCLASSKEY="from ProductVO WHERE productClasskey=? and orderdisplay=1 ORDER BY ProductClassKey,sequence ASC";
 	private static final String FINBYPRODUCTNAME="from ProductVO where productionName=?";
 	
 	//用來注入sessionFactory（不注入會報錯）
@@ -31,9 +29,9 @@ public class ProductHibernateDAO extends HibernateDaoSupport implements ProductD
 	}
 
     @Override
-	public List<ProductVO> getProductKeys() {
-		List<ProductVO> pVOs = (List<ProductVO>) getHibernateTemplate().find(SELECT_PRODUCTCLASSKEY);
-        return pVOs;
+	public List<String> getProductKeys() {
+    	List<String> productClasskeys = (List<String>) getHibernateTemplate().find(SELECT_PRODUCTCLASSKEY);
+        return productClasskeys;
 	}
     @Override
 	public List<ProductVO> findbyProductClassKey(String productClassKey) {

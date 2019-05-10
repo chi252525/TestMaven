@@ -7,7 +7,7 @@ import com.welljoint.entity.ProductVO;
 
 public interface ProductDAO_interface {
 	List<ProductVO> getAll();
-	List<ProductVO> getProductKeys();
+	List<String> getProductKeys();
 	List<ProductVO> findbyProductClassKey(String productClassKey);
 	void insert(ProductVO productVO);
 	void update(ProductVO productVO);

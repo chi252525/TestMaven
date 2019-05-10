@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.welljoint.entity.DiscountVO" table="dbo.Discount" >
+        <id name="DisCode" column="DisCode" type="string">
+        </id>
+        <property name="disRate" column="disRate" />
+        <property name="Week" column="Week" />
+        <property name="TimeInterval" column="TimeInterval" />
+        <property name="listSKU" column="listSKU" />
+        <property name="Status" column="Status" />
+        <property name="Validity_period" column="Validity_period" />
+    </class>
+  
+</hibernate-mapping>

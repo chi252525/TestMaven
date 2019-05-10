@@ -3,23 +3,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.welljoint.entity.*"%>
 <%@ page import="java.text.*"%>
-<%
-Vector<ProductCartVO> buylist = (Vector<ProductCartVO>) session.getAttribute("shoppingcart");
-double invoicetotal_inloop=0.0;
-String invoicetotal_inloop_s=new String();
-int totalQty_inloop=0;
-DecimalFormat dfm1 = new DecimalFormat("#");
-if (buylist != null && (buylist.size() > 0)) {
-	
-	for (int i = 0; i < buylist.size(); i++) {
-		ProductCartVO order = buylist.get(i);
-		invoicetotal_inloop+=order.getSubtotalprice();
-		totalQty_inloop+=order.getQty();
-		invoicetotal_inloop_s=dfm1.format(invoicetotal_inloop);
-	}
-}
 
-%>
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark" id="navbar">
       <div class="container">
       <c:if test="${not empty shoppingcart}">
@@ -45,7 +29,7 @@ if (buylist != null && (buylist.size() > 0)) {
             </li>
             <li class="">
               <a class="nav-link" href="<%=request.getContextPath()%>/frontstage/Cart.jsp">
-              <i class="fa fa-shopping-cart"></i><span class="sr-only">(current)</span>&nbsp;購物車<c:if test="${not empty shoppingcart}"> <span class=" badge badge-pill badge-danger"><%=buylist.size() %></span> </c:if>
+              <i class="fa fa-shopping-cart"></i><span class="sr-only">(current)</span>&nbsp;購物車<c:if test="${not empty shoppingcart}"> <span class=" badge badge-pill badge-danger">2</span> </c:if>
               </a>
             </li>
           </ul>
@@ -68,7 +52,7 @@ $(function(){
 	}).scroll();
 });
 </script>
-<%if (buylist != null && (buylist.size() > 0)) {%>
+
 <!-- 清空購物車的Modal -->
 	<div class="modal fade" id="restart" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
@@ -88,4 +72,3 @@ $(function(){
 			</div>
 		</div>
 	</div>
-<%} %>

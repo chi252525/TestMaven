@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.welljoint.entity.InnerNumVO" table="dbo.InnerNum" >
+        <id name="id" column="ID">
+        <generator class="identity"></generator>
+        </id>
+        <property name="tableName" column="TableName" />
+        <property name="tabaleCapacity" column="TableCapacity" />
+        <property name="sequence" column="Sequence" />
+        <property name="status" column="Status" />
+        <property name="tableContinue" column="TableContinue" />
+        <property name="changeStamp" column="ChangeStamp" />
+    </class>
+</hibernate-mapping>
