@@ -4,7 +4,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.welljoint.entity.*"%>
-
+<%
+	response.setHeader("Pragma", "no-cache");
+	response.setHeader("Cache-Control", "no-cache");
+	response.setDateHeader("Expires", 0);
+	response.flushBuffer();
+%>
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -22,7 +27,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 let content = "";		
-$.getJSON("<%=request.getContextPath()%>/resource/json/product.json", function(json){
+$.getJSON("${contextPath}/resource/json/product.json", function(json){
      $.each(json.Allproduct, function(i,classjobj){
         content +='<div class="bg-white proRow" id="'+classjobj.productClasskey+'" data-productClasskey="FCHYW">';
         content +='<div class="cateTitle"><h5 class="border-bottom mb-0"  >'+classjobj.productClass+'</h5></div>';
@@ -31,10 +36,10 @@ $.getJSON("<%=request.getContextPath()%>/resource/json/product.json", function(j
         	content +='<div class="col-lg-4 col-md-6 col-sm-6  col-xs-6 col-6 mt-2 px-1" style="cursor:pointer">';
             content +='<div class="card rounded shadow-sm ">';
             content +='<a href="${contextPath}/productEShop?id='+jobj.productid+'" class="proImg">';
-               content +='<img class="card-img-top" src="/TestMaven/img/product/'+jobj.productImg+'" alt="'+jobj.productImg+'"></a>';
+               content +='<img class="card-img-top" src="${contextPath}/img/product/'+jobj.productImg+'" alt="'+jobj.productImg+'"></a>';
                content +='<div class="card-body" ><h5 class="card-title my-0"><b>'+jobj.productionName+'</b></h5>';
             if(jobj.isDiscountprice==true){
-              content +='';   
+              content +='<h5 class="card-title my-0 proPrice">N.T<S>'+jobj.prices+'</S>&nbsp;<b style="color:Tomato;">'+jobj.discountPrice+'</b>元</h5>';   
             }else{
                content +='<h5 class="card-title my-0 proPrice">N.T<span>'+jobj.prices+'</span>元</h5>';  
             }
