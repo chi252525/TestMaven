@@ -34,7 +34,7 @@
     <section>
       <div class="container indexForm">
         <div class="col-lg-6 offset-lg-3 col-md-12 col-sm-12">
-<form method="post" action="<%=request.getContextPath()%>/productEShop" name="shoppingform" enctype="x-www-form-urlencoded">
+<form method="post" action="<%=request.getContextPath()%>/Order/productEShop" name="shoppingform" enctype="x-www-form-urlencoded">
 	<div class="form-group">
 		<p><small class="text-muted-color">* </small><span>請選擇內用或外帶</span></p>
 		<div class="row btn_radio">

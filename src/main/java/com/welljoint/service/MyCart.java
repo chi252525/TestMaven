@@ -1,91 +1,145 @@
 package com.welljoint.service;
-
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.IdentityHashMap;
 import java.util.Iterator;
+import java.util.Set;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.welljoint.entity.AttributeSingleVO;
 import com.welljoint.entity.ProductVO;
 
+//https://blog.csdn.net/hoho_12/article/details/51366724
+
 public class MyCart {
-//	https://blog.csdn.net/hoho_12/article/details/51366724
-	
-HashMap<String,ProductVO> hm=new HashMap<String,ProductVO>();
-	
-	//添加书的第二个方法
-	public void addBook2(String id){
-		if(hm.containsKey(id)){
-			//hm已经有这个书
-			ProductVO book=hm.get(id);
-//			int shoppingNum=book.getShoppingNum();
-//			book.setShoppingNum(shoppingNum+1);
-		}else{
-//			hm.put(id, new BookService().getBookById(id));
+	private static ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring.xml");
+	HashMap<Integer, ProductVO> hm = new HashMap<Integer, ProductVO>();
+	private ProductService productSvc;
+	private AttributeSingleService attrsSvc;
+	// 添加商品
+	public void addProduct(String id, ProductVO pVO) {
+		productSvc = applicationContext.getBean(ProductService.class);
+		String shoppingNote = pVO.getShoppingNote();
+		String[] shoppingNote_arr=shoppingNote.split(",");
+		Arrays.sort(shoppingNote_arr);
+		//============================比較是否為同一商品============================
+		if (hm.containsKey(pVO.hashCode())) {
+//			System.out.println("id="+id+"重複的商品");
+			ProductVO pVO_inhm = hm.get(pVO.hashCode());
+			String shoppingNote_inhm = pVO_inhm.getShoppingNote();
+			String[] shoppingNote_inhm_arr=shoppingNote_inhm.split(",");
+			Arrays.sort(shoppingNote_inhm_arr);
+//			================================比較是否選購同屬性============================
+			if(Arrays.equals(shoppingNote_arr,shoppingNote_inhm_arr)){ 
+//				System.out.print("重複的品項");
+				// 加入購物車，shoppingQty数量
+				int shoppingQty = pVO_inhm.getShoppingQty();
+				pVO_inhm.setShoppingQty(shoppingQty + pVO.getShoppingQty());
+				//處裡屬性加價錢
+				Double shoppingSubtotalprice=countSubtotalprice(pVO_inhm,shoppingQty + pVO.getShoppingQty(),true);
+				pVO_inhm.setShoppingSubtotalprice(shoppingSubtotalprice);//更新小計
+				hm.put(pVO.hashCode(), pVO_inhm);
+			};
+		} else {
+//			System.out.println("不重複的商品");
+			ProductVO newpVO=productSvc.findbyId(Integer.parseInt(id));
+			newpVO.setShoppingNote(shoppingNote);
+			newpVO.setShoppingPrice(pVO.getShoppingPrice());
+			newpVO.setShoppingQty(pVO.getShoppingQty());
+			Double shoppingSubtotalprice=countSubtotalprice(newpVO,pVO.getShoppingQty(),true);
+			newpVO.setShoppingSubtotalprice(shoppingSubtotalprice);
+			hm.put(newpVO.hashCode(), newpVO);
+//			Set<Integer> set = hm.keySet();
+//			Iterator it= set.iterator();
+//			while(it.hasNext()) {
+//				Object myKey = it.next();
+//				System.out.println(myKey +"="+ hm.get(myKey));
+//			}
 		}
 	}
-	
-	//返回该购物车的总价格
-	public float getTotalPrice(){
-		float totalPrice=0.0f;
-		
-		//得到总价格
-		ArrayList<ProductVO> al=new ArrayList<ProductVO>();
-		Iterator it=hm.keySet().iterator();
-		while(it.hasNext()){
-			//取出书号
-			String bookId=(String)it.next();
-			//取出书号对应的Book
-			ProductVO book=hm.get(bookId);
-//			totalPrice+=book.getPrice()*book.getShoppingNum();
-			
+
+	public Double countSubtotalprice(ProductVO pVO,Integer shoppingQty, boolean actionbln) {
+		attrsSvc = applicationContext.getBean(AttributeSingleService.class);
+		Double shoppingSubtotalprice = 0.0;
+		Double oneproduct_price=pVO.getShoppingPrice();
+		String[] shoppingNote_arr = pVO.getShoppingNote().split(",");
+		for (String oneattrName : shoppingNote_arr) {
+			AttributeSingleVO asVO = attrsSvc.findByAttributeName(oneattrName);
+			Double asVOprice=asVO.getPrice();
+			if (asVO.getPrice() != null && asVO.getPrice()!=0) {
+				if (actionbln == true) {//true是加
+					oneproduct_price+= asVOprice;
+				}
+			}
 		}
-		
+		shoppingSubtotalprice=(oneproduct_price*shoppingQty);
+		return shoppingSubtotalprice;
+	}
+	// 返回該購物車的總價格
+	public Double getTotalPrice() {
+		Double totalPrice = 0.0;
+		// 得到总价格
+		ArrayList<ProductVO> al = new ArrayList<ProductVO>();
+		Iterator it = hm.keySet().iterator();
+		while (it.hasNext()) {
+			Integer pVOId = (Integer) it.next();
+			ProductVO pVO = hm.get(pVOId);
+			totalPrice += pVO.getShoppingSubtotalprice();
+		}
 		return totalPrice;
 	}
 	
-	//添加书籍
-	public void addBook(String id,ProductVO book){
-		if(hm.containsKey(id)){
-			book=hm.get(id);
-			//如果这本书已经购买过，shoppingNum数量+1
-//			int shoppingNum=book.getShoppingNum();
-//			book.setShoppingNum(shoppingNum+1);
-			//hm.put(id, book);
-		}else{		
-		   hm.put(id, book);
+	// 返回該購物車的總數量
+	public int getTotalQty() {
+		int totalQty = 0;
+		ArrayList<ProductVO> al = new ArrayList<ProductVO>();
+		Iterator it = hm.keySet().iterator();
+		while (it.hasNext()) {
+			Integer pVOId = (Integer) it.next();
+			ProductVO pVO = hm.get(pVOId);
+			totalQty += pVO.getShoppingQty();
 		}
-		
-	}
-	//删除书籍
-	public void delBook(String id){
-		hm.remove(id);
+		return totalQty;
 	}
 	
-	//更新书籍(对于购物车，更新所买书籍的数量)
-	public void updateBook(String id,String nums){
-		//取出id对应的Book
-		ProductVO book=hm.get(id);
-//		book.setShoppingNum(Integer.parseInt(nums));	
+	// 删除商品
+	public void delProduct(Integer strhashCode) {
+		hm.remove(strhashCode);
+//		Set<Integer> set = hm.keySet();
+//		Iterator it= set.iterator();
+//		while(it.hasNext()) {
+//			Object myKey = it.next();
+//			System.out.println("刪除後剩的"+myKey +"="+ hm.get(myKey));
+//		}
 		
 	}
-	//显示该购物车中的所有商品信息
-	public ArrayList showMyCart(){
-		ArrayList<ProductVO> al=new ArrayList<ProductVO>();
-		
-		//遍历HashMap		
-		Iterator it=hm.keySet().iterator();
-		while(it.hasNext()){
-			//取出key
-			String id=(String)it.next();
-			//取出Book
-			ProductVO book=hm.get(id);
-			al.add(book);			
+
+	// 更新商品
+	public void updateProduct(Integer hashid, String quantity) {
+		ProductVO pVO = hm.get(hashid);
+		pVO.setShoppingQty(Integer.parseInt(quantity));
+		Double shoppingSubtotalprice=countSubtotalprice(pVO,Integer.parseInt(quantity),true);
+		pVO.setShoppingSubtotalprice(shoppingSubtotalprice);//更新小計
+		hm.put(hashid, pVO);
+	}
+
+	// 顯示該購物中的所有商品信息
+	public ArrayList showMyCart() {
+		ArrayList<ProductVO> al = new ArrayList<ProductVO>();
+		// 遍历HashMap
+		Iterator it = hm.keySet().iterator();
+		while (it.hasNext()) {
+			Integer id_init = (Integer) it.next();
+			ProductVO productVO = hm.get(id_init);
+			al.add(productVO);
 		}
 		return al;
 	}
-	
-	
-	//清空书,清空购物车
-	public void clearBook(){
+
+	// 清空購物車
+	public void clearProduct() {
 		hm.clear();
 	}
 

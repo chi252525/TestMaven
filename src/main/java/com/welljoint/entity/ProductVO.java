@@ -3,31 +3,8 @@ package com.welljoint.entity;
 public class ProductVO implements java.io.Serializable{
 	
 	public ProductVO() {
-		id = 0;
-		productClass = "";
-		productClasskey = "";
-		productionName = "";
-		subordinate_Name = "";
-		productionContent0 = "";
-		productionContent1 = "";
-		productionContent2 = "";
-		prices = 0.0;
-		discountPrice = 0.0;
-		productImg = "";
-		productImg1 = "";
-		productExist = true;
-		productAmount = 0;
-		choice_Item1 = "";
-		choice_Item2 = "";
-		choice_Item3 = "";
-		orderDisplay = true;
-		sequence = 0;
-		calories = 0.0;
-		week = "";
-		timeInterval = "";
-		tax_Type = "";
-		tax_Rate = 0.0;
-		description = "";
+		super();
+		// TODO Auto-generated constructor stub
 	}
 	private Integer id;
 	private String productClass;
@@ -54,6 +31,30 @@ public class ProductVO implements java.io.Serializable{
 	private String tax_Type;
 	private Double tax_Rate;
 	private String description;
+	//購物車需要
+	private Integer shoppingQty;
+	private Double shoppingSubtotalprice;
+	private Double shoppingPrice;
+	private String shoppingNote;
+	
+	public boolean equals(Object obj) {
+		if(this==obj) {
+			return true;
+		}
+		if(!(obj instanceof ProductVO)) {
+			return false;
+		}
+		ProductVO pVO =(ProductVO)obj;
+		if(this.id==pVO.id && this.shoppingNote.equals(pVO.shoppingNote)) {
+			return true;
+		}else {
+			return false;	
+		}
+	}
+	public int hashCode() {
+		return this.shoppingNote.hashCode() *this.id;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -204,5 +205,31 @@ public class ProductVO implements java.io.Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public Integer getShoppingQty() {
+		return shoppingQty;
+	}
+	public void setShoppingQty(Integer shoppingQty) {
+		this.shoppingQty = shoppingQty;
+	}
+	public Double getShoppingSubtotalprice() {
+		return shoppingSubtotalprice;
+	}
+	public void setShoppingSubtotalprice(Double shoppingSubtotalprice) {
+		this.shoppingSubtotalprice = shoppingSubtotalprice;
+	}
+	public Double getShoppingPrice() {
+		return shoppingPrice;
+	}
+	public void setShoppingPrice(Double shoppingPrice) {
+		this.shoppingPrice = shoppingPrice;
+	}
+	public String getShoppingNote() {
+		return shoppingNote;
+	}
+	public void setShoppingNote(String shoppingNote) {
+		this.shoppingNote = shoppingNote;
+	}
+
+	
 	
 }

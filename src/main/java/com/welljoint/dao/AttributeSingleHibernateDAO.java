@@ -23,7 +23,7 @@ public class AttributeSingleHibernateDAO extends HibernateDaoSupport implements 
 
 	@Override
 	public AttributeSingleVO findByAttributeName(String attributeName) {
-		AttributeSingleVO attrsVO = (AttributeSingleVO) getHibernateTemplate().find(FINDBYATTRNAME,attributeName);
+		AttributeSingleVO attrsVO = (AttributeSingleVO) getHibernateTemplate().find(FINDBYATTRNAME,attributeName).get(0);
         return attrsVO;
 	}
 

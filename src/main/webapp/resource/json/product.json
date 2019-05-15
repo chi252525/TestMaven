@@ -1,40 +1,786 @@
-{"Allproduct":[
-	{
-		"Data":
-		[
-			{
-				"choice_Item3":
-				[	
-					
-					{
-						"attribute":[
-							{"attributesName":"正常","id":"ddds","price":0.0,"sequence":0},
-							{"attributesName":"半糖","id":"ddds","price":0.0,"sequence":0},
-							{"attributesName":"無糖","id":"ddds","price":0.0,"sequence":0}
-						],
-						"Description":"甜度",
-						"multiple_choice":false,
-						"sequence":0,
-						"attributeid":"ddd"
-					}
-				],
-				"sequence":1,
-				"productionName":"唐揚雞",
-				"subordinate_Name":"",
-				"description":"好吃",
-				"prices":"68.0",
-				"discountPrice":"55.0",
-				"productImg":"11542017849.jpg",
-				"productImg1":"11542017849.jpg",
-				"productExist":"true",
-				"productAmount":10,
-				"week":"Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
-				"calories":0.0,
-				"timeInterval":"00:00:00 - 23:59:59"
-			}
-		],
-		"productClass":"炸物、小點、湯品",
-		"productClasskey":"FCHYW"
-	}
-	
-]}
+{
+	"Allproduct": [
+		{
+			"productClasskey": "FCHYW",
+			"productClass": "炸物、小點、湯品",
+			"Data": [
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2801,
+					"productExist": true,
+					"choice_Item3": [],
+					"subordinate_Name": "Subbbbbbbb",
+					"discountPrice": 68,
+					"productImg": "11542017849.jpg",
+					"sequence": 370,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "唐揚雞",
+					"prices": 68,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2802,
+					"productExist": true,
+					"choice_Item3": [],
+					"subordinate_Name": "Subbbbbbbb",
+					"discountPrice": 58,
+					"productImg": "11542017869.jpg",
+					"sequence": 380,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "焦糖地瓜",
+					"prices": 58,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2803,
+					"productExist": true,
+					"choice_Item3": [],
+					"subordinate_Name": "Subbbbbbbb",
+					"discountPrice": 48,
+					"productImg": "11542017888.jpg",
+					"sequence": 390,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "茶碗蒸",
+					"prices": 48,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2804,
+					"productExist": true,
+					"choice_Item3": [],
+					"subordinate_Name": "Subbbbbbbb",
+					"discountPrice": 50,
+					"productImg": "11542017909.jpg",
+					"sequence": 400,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "鮮魚味噌湯",
+					"prices": 50,
+					"isShowday": true,
+					"isDiscountprice": false
+				}
+			]
+		},
+		{
+			"productClasskey": "KGEYL",
+			"productClass": "刺身",
+			"Data": [
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2788,
+					"productExist": true,
+					"choice_Item3": [],
+					"discountPrice": 88,
+					"productImg": "11542017420.jpg",
+					"sequence": 230,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "鮪魚一品刺身",
+					"prices": 88,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2789,
+					"productExist": true,
+					"choice_Item3": [],
+					"discountPrice": 118,
+					"productImg": "11542017471.jpg",
+					"sequence": 240,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "紅魽一品刺身",
+					"prices": 118,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2790,
+					"productExist": true,
+					"choice_Item3": [],
+					"discountPrice": 218,
+					"productImg": "11542017490.jpg",
+					"sequence": 250,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "三品刺身",
+					"prices": 218,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2791,
+					"productExist": true,
+					"choice_Item3": [],
+					"discountPrice": 358,
+					"productImg": "11542017510.jpg",
+					"sequence": 260,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "五品刺身",
+					"prices": 358,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2792,
+					"productExist": true,
+					"choice_Item3": [],
+					"discountPrice": 585,
+					"productImg": "11542017529.jpg",
+					"sequence": 270,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "七品刺身",
+					"prices": 585,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2793,
+					"productExist": true,
+					"choice_Item3": [],
+					"subordinate_Name": "七、八月限定",
+					"discountPrice": 120,
+					"productImg": "11542017555.jpg",
+					"sequence": 280,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "日本生蠔",
+					"prices": 120,
+					"isShowday": true,
+					"isDiscountprice": false
+				}
+			]
+		},
+		{
+			"productClasskey": "NNXQY",
+			"productClass": "飲料",
+			"Data": [
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2805,
+					"productExist": true,
+					"choice_Item3": [],
+					"subordinate_Name": "Subbbbbbbb",
+					"discountPrice": 70,
+					"productImg": "11542017941.jpg",
+					"sequence": 430,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "哈密瓜汽水",
+					"prices": 80,
+					"isShowday": true,
+					"isDiscountprice": true
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2806,
+					"productExist": true,
+					"choice_Item3": [],
+					"subordinate_Name": "Subbbbbbbb",
+					"discountPrice": 70,
+					"productImg": "11542017982.jpg",
+					"sequence": 440,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "蘋果汽水",
+					"prices": 80,
+					"isShowday": true,
+					"isDiscountprice": true
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2807,
+					"productExist": true,
+					"choice_Item3": [],
+					"subordinate_Name": "Subbbbbbbb",
+					"discountPrice": 75,
+					"productImg": "11542019840.jpg",
+					"sequence": 450,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "白桃汽水",
+					"prices": 85,
+					"isShowday": true,
+					"isDiscountprice": true
+				}
+			]
+		},
+		{
+			"productClasskey": "OMCOJ",
+			"productClass": "握壽司",
+			"Data": [
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2767,
+					"productExist": true,
+					"choice_Item3": [],
+					"discountPrice": 38,
+					"productImg": "11542016636.jpg",
+					"sequence": 10,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "海老握壽司",
+					"prices": 38,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2768,
+					"productExist": true,
+					"choice_Item3": [],
+					"discountPrice": 38,
+					"productImg": "11542016704.jpg",
+					"sequence": 20,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "玉米握壽司",
+					"prices": 38,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2769,
+					"productExist": true,
+					"choice_Item3": [],
+					"discountPrice": 48,
+					"productImg": "11542016735.jpg",
+					"sequence": 30,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "旗魚握壽司",
+					"prices": 48,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2770,
+					"productExist": true,
+					"choice_Item3": [],
+					"discountPrice": 45,
+					"productImg": "11542016767.jpg",
+					"sequence": 40,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "鮭魚肚握壽司",
+					"prices": 45,
+					"isShowday": true,
+					"isDiscountprice": false
+				}
+			]
+		},
+		{
+			"productClasskey": "QKGIE",
+			"productClass": "軍艦、卷類",
+			"Data": [
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2779,
+					"productExist": true,
+					"choice_Item3": [],
+					"subordinate_Name": "兩貫",
+					"discountPrice": 28,
+					"productImg": "11542017131.jpg",
+					"sequence": 130,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "蝦卵軍艦",
+					"prices": 28,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2780,
+					"productExist": true,
+					"choice_Item3": [],
+					"subordinate_Name": "兩貫",
+					"discountPrice": 38,
+					"productImg": "11542017164.jpg",
+					"sequence": 140,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "龍蝦沙拉軍艦",
+					"prices": 38,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2781,
+					"productExist": true,
+					"choice_Item3": [],
+					"subordinate_Name": "兩貫",
+					"discountPrice": 48,
+					"productImg": "11542017195.jpg",
+					"sequence": 150,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "鮭魚軍艦",
+					"prices": 48,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2782,
+					"productExist": true,
+					"choice_Item3": [],
+					"discountPrice": 28,
+					"productImg": "11542017248.jpg",
+					"sequence": 160,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "肉鬆細卷",
+					"prices": 28,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2783,
+					"productExist": true,
+					"choice_Item3": [],
+					"discountPrice": 38,
+					"productImg": "11542017270.jpg",
+					"sequence": 170,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "玉子燒細卷",
+					"prices": 38,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2784,
+					"productExist": true,
+					"choice_Item3": [],
+					"discountPrice": 38,
+					"productImg": "11542017290.jpg",
+					"sequence": 180,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "蟹肉棒細卷",
+					"prices": 38,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2785,
+					"productExist": true,
+					"choice_Item3": [],
+					"subordinate_Name": "半條",
+					"discountPrice": 138,
+					"productImg": "11542017323.jpg",
+					"sequence": 190,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "鮭魚牛肉卷",
+					"prices": 138,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2786,
+					"productExist": true,
+					"choice_Item3": [],
+					"discountPrice": 58,
+					"productImg": "11542017348.jpg",
+					"sequence": 200,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "蘆筍蝦手卷",
+					"prices": 58,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2787,
+					"productExist": true,
+					"choice_Item3": [],
+					"discountPrice": 68,
+					"productImg": "11542017368.jpg",
+					"sequence": 210,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "鮭魚卵手卷",
+					"prices": 68,
+					"isShowday": true,
+					"isDiscountprice": false
+				}
+			]
+		},
+		{
+			"productClasskey": "WEDLU",
+			"productClass": "炙燒握壽司",
+			"Data": [
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2771,
+					"productExist": true,
+					"choice_Item3": [],
+					"discountPrice": 38,
+					"productImg": "11542016807.jpg",
+					"sequence": 50,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "炙燒花枝握壽司",
+					"prices": 38,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2772,
+					"productExist": true,
+					"choice_Item3": [],
+					"discountPrice": 58,
+					"productImg": "11542016841.jpg",
+					"sequence": 60,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "炙燒干貝握壽司",
+					"prices": 58,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2773,
+					"productExist": true,
+					"choice_Item3": [],
+					"discountPrice": 58,
+					"productImg": "11542016873.jpg",
+					"sequence": 70,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "醬燒炙鮭魚握壽司",
+					"prices": 58,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2774,
+					"productExist": true,
+					"choice_Item3": [],
+					"discountPrice": 58,
+					"productImg": "11542016896.jpg",
+					"sequence": 80,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "醬燒炙牛小排握壽司",
+					"prices": 58,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2775,
+					"productExist": true,
+					"choice_Item3": [],
+					"discountPrice": 48,
+					"productImg": "11542016923.jpg",
+					"sequence": 90,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "炙燒鴨胸握壽司",
+					"prices": 48,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2776,
+					"productExist": true,
+					"choice_Item3": [],
+					"discountPrice": 58,
+					"productImg": "11542016961.jpg",
+					"sequence": 100,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "炙燒星鰻握壽司",
+					"prices": 58,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2777,
+					"productExist": true,
+					"choice_Item3": [],
+					"discountPrice": 28,
+					"productImg": "11542017022.jpg",
+					"sequence": 110,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "炙燒杏胞菇",
+					"prices": 28,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2778,
+					"productExist": true,
+					"choice_Item3": [],
+					"discountPrice": 58,
+					"productImg": "11542017057.jpg",
+					"sequence": 120,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "炙燒蒲燒鰻握壽司",
+					"prices": 58,
+					"isShowday": true,
+					"isDiscountprice": false
+				}
+			]
+		},
+		{
+			"productClasskey": "WSSRX",
+			"productClass": "丼飯、丼物",
+			"Data": [
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2794,
+					"productExist": true,
+					"choice_Item3": [],
+					"discountPrice": 268,
+					"productImg": "11542017596.jpg",
+					"sequence": 290,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "散壽司",
+					"prices": 268,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2795,
+					"productExist": true,
+					"choice_Item3": [],
+					"discountPrice": 288,
+					"productImg": "11542017620.jpg",
+					"sequence": 300,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "鴨胸丼飯",
+					"prices": 288,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2796,
+					"productExist": true,
+					"choice_Item3": [],
+					"discountPrice": 388,
+					"productImg": "11542017644.jpg",
+					"sequence": 320,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "鮭魚親子丼飯",
+					"prices": 388,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2797,
+					"productExist": true,
+					"choice_Item3": [],
+					"discountPrice": 298,
+					"productImg": "11542017673.jpg",
+					"sequence": 330,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "海鮮丼飯",
+					"prices": 298,
+					"isShowday": true,
+					"isDiscountprice": false
+				}
+			]
+		},
+		{
+			"productClasskey": "XOJDA",
+			"productClass": "超值套餐",
+			"Data": [
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2798,
+					"productExist": true,
+					"choice_Item3": [
+						{
+							"multiple_choice": false,
+							"attributeid": "VJFPW",
+							"sequence": 1,
+							"description": "加價60元升級套餐",
+							"attribute": [
+								{
+									"sequence": 0,
+									"attributesName": "不加點",
+									"price": 0,
+									"id": "IIDRF"
+								},
+								{
+									"sequence": 1,
+									"attributesName": "唐揚雞、茶碗蒸、焦糖地瓜+60",
+									"price": 60,
+									"id": "YCPEO"
+								}
+							]
+						}
+					],
+					"subordinate_Name": "Subbbbbbbb",
+					"discountPrice": 168,
+					"productImg": "11542017765.jpg",
+					"sequence": 340,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "綜合6貫套餐",
+					"prices": 168,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2799,
+					"productExist": true,
+					"choice_Item3": [
+						{
+							"multiple_choice": false,
+							"attributeid": "VJFPW",
+							"sequence": 1,
+							"description": "加價60元升級套餐",
+							"attribute": [
+								{
+									"sequence": 0,
+									"attributesName": "不加點",
+									"price": 0,
+									"id": "IIDRF"
+								},
+								{
+									"sequence": 1,
+									"attributesName": "唐揚雞、茶碗蒸、焦糖地瓜+60",
+									"price": 60,
+									"id": "YCPEO"
+								}
+							]
+						}
+					],
+					"subordinate_Name": "Subbbbbbbb",
+					"discountPrice": 238,
+					"productImg": "11542017787.jpg",
+					"sequence": 350,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "綜合8貫套餐",
+					"prices": 238,
+					"isShowday": true,
+					"isDiscountprice": false
+				},
+				{
+					"isShowtime": true,
+					"week": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+					"productid": 2800,
+					"productExist": false,
+					"choice_Item3": [
+						{
+							"multiple_choice": false,
+							"attributeid": "VJFPW",
+							"sequence": 1,
+							"description": "加價60元升級套餐",
+							"attribute": [
+								{
+									"sequence": 0,
+									"attributesName": "不加點",
+									"price": 0,
+									"id": "IIDRF"
+								},
+								{
+									"sequence": 1,
+									"attributesName": "唐揚雞、茶碗蒸、焦糖地瓜+60",
+									"price": 60,
+									"id": "YCPEO"
+								}
+							]
+						}
+					],
+					"subordinate_Name": "Subbbbbbbb",
+					"discountPrice": 328,
+					"productImg": "11542017810.jpg",
+					"sequence": 360,
+					"productAmount": 10000,
+					"timeInterval": "00:00:00 - 23:59:59",
+					"productionName": "超值10貫套餐",
+					"prices": 328,
+					"isShowday": true,
+					"isDiscountprice": false
+				}
+			]
+		}
+	]
+}

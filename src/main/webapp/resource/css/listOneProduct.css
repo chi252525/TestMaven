@@ -30,7 +30,7 @@ img {
 		background-color: transparent;
 		background-image: none;
 		border:1px solid  #ffc107;
-		transition:.15s ease-in-out;
+		transition:.30s ease-in-out;
 		padding: .5rem 1rem;
 		font-size: 1rem;
 		border-radius: .3rem;

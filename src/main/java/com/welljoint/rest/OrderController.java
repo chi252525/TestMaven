@@ -17,10 +17,10 @@ import com.welljoint.entity.OrdersPhoneVO;
 
 @Controller 
 @SessionAttributes(value="shoppingcart")
-@RequestMapping("/productEShop")
+@RequestMapping("/Order")
 public class OrderController {
 	
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value="/productEShop" ,method = RequestMethod.POST)
     public String getInit(HttpSession session,@RequestParam("orderstatus") String orderstatus ,@RequestParam("internalNumber") String internalNumber){ 
 		System.out.println("orderstatus="+orderstatus+"internalNumber="+internalNumber);
 		OrdersPhoneVO opVO= new OrdersPhoneVO();
@@ -29,4 +29,12 @@ public class OrderController {
 		session.setAttribute("shoppingorder", opVO);
 		return "redirect:/frontstage/productEShop.jsp"; 
     }
+	
+	@RequestMapping(value="/addOrder" ,method = RequestMethod.POST)
+    public String addOrder(HttpSession session){ 
+		
+		return "SuccessOrder"; 
+    }
+	
+	
 }

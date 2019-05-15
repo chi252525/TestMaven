@@ -31,7 +31,7 @@
 				if('${requestScope.productid}'==jobj.productid){
 					$('#productionName').html(jobj.productionName);
 					$('#showprices').html(jobj.prices);
-					$('#prices').val(jobj.prices);
+					$('#shoppingPrice').val(jobj.prices);
 					$('#id').val('${requestScope.productid}');
 					$('#productImg').attr('src','${contextPath}/img/product/'+jobj.productImg);
 					
@@ -40,23 +40,23 @@
 					}
 					if(jobj.isDiscountprice == true){
 						$('#showprices').html('<S>'+jobj.prices+'</S>&nbsp;<b style="color:Tomato;">'+jobj.discountPrice+'</b>');
-						$('#prices').val(jobj.discountPrice);
+						$('#shoppingPrice').val(jobj.discountPrice);
 					}
 					 if(jobj.subordinate_Name!==null && jobj.subordinate_Name!== undefined){
-						 $('#subordinate_Name').html('<p class="card-text"><span class="badge badge-pill badge-info "><b>'+jobj.subordinate_Name+'</b></span></p>');
+						 $('#subordinate_Name').html('<p class="card-text py-3"><span class="badge badge-pill badge-info "><b>'+jobj.subordinate_Name+'</b></span></p>');
 			            }
 					 if(jobj.calories!==null && jobj.calories!== undefined){
 						 $('#calories').html('<p><span class="badge badge-info">熱量:'+jobj.calories+'</span></p>');
 					 }
-						 $.each(jobj.choice_Item3, function(k,innerjobj){
-							 $('#attribute_size').val(jobj.choice_Item3.length);
+					 var attr_num=0;	
+					 $.each(jobj.choice_Item3, function(k,innerjobj){
 							 if(innerjobj!=null && innerjobj!== undefined){
 								 var choice_content='';
 								 if(innerjobj.multiple_choice==false){
 									 choice_content+='<div class="choice">';
-									 choice_content+='<h5 class="title">'+innerjobj.description+'</h5>';
+									 choice_content+='<h5 class="title">'+innerjobj.description+':</h5>';
 									 choice_content+='<div class="attr_css">';
-									 var attr_num=0;
+									 
 									 $.each(innerjobj.attribute, function(l,attrsjobj){
 										 if(attrsjobj!=null && attrsjobj!== undefined){
 											 choice_content+='<input type="radio" name="attr'+attr_num+'" id="radio'+attrsjobj.id+'"  value="'+attrsjobj.attributesName+'"  >';
@@ -73,10 +73,12 @@
 									 choice_content+='<div class="attr_css">';
 									 $.each(innerjobj.attribute, function(l,attrsjobj){
 										 if(attrsjobj!=null && attrsjobj!== undefined){
-											 choice_content+='<input type="checkbox" name="attr'+attrsjobj.id+'" id="checkbox'+attrsjobj.id+'"  value="'+attrsjobj.attributesName+'"  >';
+											 choice_content+='<input type="checkbox" name="attr'+attr_num+'" id="checkbox'+attrsjobj.id+'"  value="'+attrsjobj.attributesName+'"  >';
 											 choice_content+='<label for="checkbox'+attrsjobj.id+'" >'+attrsjobj.attributesName+'</label>';
+											 attr_num+=1;
 										 }
 									 });
+									
 									 choice_content+='</div>';
 									 choice_content+='</div>'; 
 								 } 
@@ -108,7 +110,7 @@
 				<form  action="${contextPath}/Cart/add" method=post enctype="x-www-form-urlencoded">
 					<div class="card proInfo">
 						<img class="card-img-top img-fluid" id="productImg"	src="${contextPath}/img/product/noproduct.jpg" alt="noproduct.jpg">
-						<div class="card-body">
+						<div class="card-body px-4">
 						<div class="row">
 							<h3 class="card-title col-12 col-sm-10" id="productionName"></h3>
 							<div id="soldOut"></div>
@@ -120,7 +122,7 @@
 								<div><span>數量:</span>
 									<button type="button" id="minus" class="btn btn-warning"><i class="fas fa-minus"></i>
 									</button>
-									<span id="qty">1</span> <input type="hidden" name="qty" id="qty_parm" value="1">
+									<span id="qty">1</span> <input type="hidden" name="shoppingQty" id="qty_parm" value="1">
 									<button type="button" id="add" class="btn btn-warning"><i class="fas fa-plus"></i>
 									</button>								
 								</div>
@@ -132,8 +134,7 @@
 							</div>
 							<div class="px-0" id="addtoCartbtn">
 							</div>
-							<input type="hidden" name="attribute_size" id="attribute_size" value="">
-							<input type="hidden" name="prices" id="prices" value="">
+							<input type="hidden" name="shoppingPrice" id="shoppingPrice" value="">
 							<input type="hidden" name="id" id="id" value="">
 						</div>
 					</div>

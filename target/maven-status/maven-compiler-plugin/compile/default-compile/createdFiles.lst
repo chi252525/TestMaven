@@ -62,6 +62,7 @@ com\welljoint\service\InnerNumService.class
 com\welljoint\dao\OrdersPhoneDAO_interface.class
 com\welljoint\service\BannerService_interface.class
 com\welljoint\dao\UserDao.class
+com\welljoint\service\MyCart.class
 com\welljoint\service\InnerNumService_interface.class
 com\welljoint\service\AttributeSingleService.class
 com\welljoint\dao\OrdersPhoneHibernateDAO.class

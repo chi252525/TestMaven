@@ -11,8 +11,9 @@
                         http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
     <!-- 對web包中的所有類進行掃描，以完成Bean建立和自動依賴注入的功能 -->
-    <context:component-scan base-package="com.welljoint" />
-
+    <context:component-scan base-package="com.welljoint.*" />
+<!-- Enable Spring Annotation Configuration -->
+	<context:annotation-config />
     <!-- 資料來源 c3p0-->
    <bean id="dataSource"
 		class="com.mchange.v2.c3p0.ComboPooledDataSource"
@@ -91,11 +92,13 @@
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
-                <prop key="hibernate.format_sql">true</prop>
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.format_sql">false</prop>
+<!--                 hibernate.hbm2ddl.auto 自動創建|更新|驗證資料庫結構 -->
+                <prop key="hibernate.hbm2ddl.auto">false</prop>
             </props>
         </property>
         <property name="mappingLocations" value="classpath:/com/welljoint/entity/*.hbm.xml" />
+        
     </bean>
 
     <!-- PlatTranscationManager -->

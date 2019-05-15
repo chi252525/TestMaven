@@ -128,9 +128,6 @@ public class CustomListener implements ServletContextListener {
 		BufferedWriter fw = null;
 		try {
 			File file = new File(FilePath);
-			if (!file.exists()) {
-				file.mkdirs();
-			}
 			fw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8")); // 指點編碼格式，以免讀取時中文字符異常
 			fw.append(jobj.toString());
 			fw.flush(); // 全部寫入緩存中的內容
@@ -195,13 +192,17 @@ public class CustomListener implements ServletContextListener {
 					Boolean bool_isDiscountprice = isDiscountprice(apVO.getId(), currentday_f, currenttime_f);
 					oneproductjobj.put("isDiscountprice", bool_isDiscountprice);
 					// =====================屬性處理===========================
-					JSONArray choice_Item3arr = new JSONArray();
-					JSONObject attrbuitejobj = new JSONObject();
+					JSONArray choice_Item3jarr = new JSONArray();
 					if (apVO.getChoice_Item3() != null) {
 						String str_choice_Item3_arr = apVO.getChoice_Item3();
 						String[] choice_Item3_arr = str_choice_Item3_arr.split(",");
 						for (String attrgid : choice_Item3_arr) {
+							JSONObject attrbuitejobj = new JSONObject();
 							AttributeGroupVO agVO = attrgSvc.getOneAttibuteGroup(attrgid);
+							attrbuitejobj.put("description", agVO.getDescription());
+							attrbuitejobj.put("multiple_choice", agVO.getMultiple_choice());
+							attrbuitejobj.put("sequence", agVO.getSequence());
+							attrbuitejobj.put("attributeid", agVO.getId());
 							if (agVO.getAttributesList() != null) {
 								String str_attributesList_arr = agVO.getAttributesList();
 								String[] attributesList_arr = str_attributesList_arr.split(",");
@@ -215,17 +216,13 @@ public class CustomListener implements ServletContextListener {
 									attrsjobj.put("sequence", asVO.getSequence());
 									attrs_jarr.put(attrsjobj);
 								}
-								attrbuitejobj.put("attribute", attrs_jarr);
+							attrbuitejobj.put("attribute", attrs_jarr);
+							choice_Item3jarr.put(attrbuitejobj);
 							}
-
-							attrbuitejobj.put("description", agVO.getDescription());
-							attrbuitejobj.put("multiple_choice", agVO.getMultiple_choice());
-							attrbuitejobj.put("sequence", agVO.getSequence());
-							attrbuitejobj.put("attributeid", agVO.getId());
+							
 						}
 					}
-					choice_Item3arr.put(attrbuitejobj);
-					oneproductjobj.put("choice_Item3", choice_Item3arr);
+					oneproductjobj.put("choice_Item3", choice_Item3jarr);
 					arraybyclasskey.put(oneproductjobj);
 				}
 				classkeyjobj.put("Data", arraybyclasskey);
@@ -241,9 +238,6 @@ public class CustomListener implements ServletContextListener {
 		BufferedWriter fw = null;
 		try {
 			File file = new File(FilePath);
-			if (!file.exists()) {
-				file.mkdirs();
-			}
 			fw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8")); // 指點編碼格式，以免讀取時中文字符異常
 			fw.append(onejobj.toString());
 			fw.flush(); // 全部寫入緩存中的內容

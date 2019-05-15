@@ -130,5 +130,11 @@ $.getJSON("${contextPath}/resource/json/product.json", function(json){
 	          $(this).off("touchmove");
 	      });
 	  });
+	  <c:if test="${not empty remindMsgs}">
+// 	    <c:forEach var="remindmessage" items="${remindMsgs}">
+// 	      toastr.info("${remindmessage}");
+// 	    </c:forEach>
+ toastr.info("${requestScope.remindMsgs}");
+  </c:if>
 	</script>
 </html>
