@@ -44,7 +44,6 @@
 		<property name="randomNum" column="randomNum" />
 		<property name="sell_No" column="sell_No" />
 		<property name="TC8_ReturnMessage" column="TC8_ReturnMessage" />
-		<property name="mealQrcode" column="mealQrcode" />
 		<property name="uuid" column="uuid" />
 	</class>
 </hibernate-mapping>

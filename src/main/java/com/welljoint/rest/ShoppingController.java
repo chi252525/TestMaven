@@ -7,8 +7,11 @@ import java.util.Iterator;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,11 +19,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.web.util.Configproperties;
 import com.welljoint.entity.ProductVO;
 import com.welljoint.service.MyCart;
 @Controller
 @RequestMapping("/Cart")
 public class ShoppingController {
+	@Autowired
+	 private Configproperties Configproperties; //引用统一的参数配置类
 	
 	@RequestMapping(value="/add",method = RequestMethod.POST)
 	public String addToCart(HttpServletRequest req,@ModelAttribute ProductVO pVO) {
@@ -83,11 +89,12 @@ public class ShoppingController {
 	}
 	
 	@RequestMapping(value="/Checkout",method = RequestMethod.GET)
-	public String checkoutfromCart(HttpServletRequest req) {
+	public String checkoutfromCart(HttpServletRequest req,ModelMap model) {
 		MyCart myCart=(MyCart)req.getSession().getAttribute("myCart");
 		req.getSession().setAttribute("shoppingList", myCart.showMyCart());
 		req.getSession().setAttribute("totalPrice", myCart.getTotalPrice());
 		req.getSession().setAttribute("totalQty", myCart.getTotalQty());
+		model.addAttribute("TAKEINFO",Configproperties.TAKEINFO);
 		return "Checkout"; 
 	}
 	static public String join(List<String> list, String conjunction) {

@@ -23,6 +23,7 @@
 </head>
 <body>
 	<%@include file="/templete/header.jsp"%>
+	
 	<script type="text/javascript">
 	$(document).ready(function() {
 		$.get( "${contextPath}/resource/json/product.json", function( json ) {
@@ -109,7 +110,7 @@
 			<div class="col-lg-9">
 				<form  action="${contextPath}/Cart/add" method=post enctype="x-www-form-urlencoded">
 					<div class="card proInfo">
-						<img class="card-img-top img-fluid" id="productImg"	src="${contextPath}/img/product/noproduct.jpg" alt="noproduct.jpg">
+						<img class="card-img-top img-fluid" id="productImg"	src="" alt="noproduct.jpg">
 						<div class="card-body px-4">
 						<div class="row">
 							<h3 class="card-title col-12 col-sm-10" id="productionName"></h3>

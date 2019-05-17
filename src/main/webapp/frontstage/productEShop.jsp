@@ -24,41 +24,7 @@
 <body>
 	<%@include file="/templete/header.jsp"%>
 	<!-- Page Content -->
-<script type="text/javascript">
-$(document).ready(function() {
-let content = "";		
-$.getJSON("${contextPath}/resource/json/product.json", function(json){
-     $.each(json.Allproduct, function(i,classjobj){
-        content +='<div class="bg-white proRow" id="'+classjobj.productClasskey+'" data-productClasskey="FCHYW">';
-        content +='<div class="cateTitle"><h5 class="border-bottom mb-0"  >'+classjobj.productClass+'</h5></div>';
-        content +='<div class="d-flex flex-wrap">';
-        $.each(classjobj.Data ,function(j,jobj){
-        	content +='<div class="col-lg-4 col-md-6 col-sm-6  col-xs-6 col-6 mt-2 px-1" style="cursor:pointer">';
-            content +='<div class="card rounded shadow-sm ">';
-            content +='<a href="${contextPath}/productEShop?id='+jobj.productid+'" class="proImg">';
-               content +='<img class="card-img-top" src="${contextPath}/img/product/'+jobj.productImg+'" alt="'+jobj.productImg+'"></a>';
-               content +='<div class="card-body" ><h5 class="card-title my-0"><b>'+jobj.productionName+'</b></h5>';
-            if(jobj.isDiscountprice==true){
-              content +='<h5 class="card-title my-0 proPrice">N.T<S>'+jobj.prices+'</S>&nbsp;<b style="color:Tomato;">'+jobj.discountPrice+'</b>元</h5>';   
-            }else{
-               content +='<h5 class="card-title my-0 proPrice">N.T<span>'+jobj.prices+'</span>元</h5>';  
-            }
-            if(jobj.subordinate_Name!==null && jobj.subordinate_Name!== undefined){
-                content +='<p class="card-text"><span class="badge badge-pill badge-info "><b>'+jobj.subordinate_Name+'</b></span></p>';
-            }
-            
-            if(jobj.productExist!==true || jobj.productAmount==0){
-               content +='<p class="card-text"><span class="badge badge-pill badge-danger soldOut"><b>已售完</b></span></p>';
-            }
-            content +='</div></div></div>';
-               });
-        content +='</div></div>';
-				});
-		$("#showbox").append(content);
-	});
 
-});
-</script>
 	<div class="container pb-4">
 		<!-- ======slider======== -->
 			 <!-- ======slider======== -->
@@ -102,6 +68,42 @@ $.getJSON("${contextPath}/resource/json/product.json", function(json){
 	</div>
 	<!-- /.container -->
 </body>
+
+<script type="text/javascript">
+$(document).ready(function() {
+let content = "";		
+$.getJSON("${contextPath}/resource/json/product.json", function(json){
+     $.each(json.Allproduct, function(i,classjobj){
+        content +='<div class="bg-white proRow" id="'+classjobj.productClasskey+'" data-productClasskey="FCHYW">';
+        content +='<div class="cateTitle"><h5 class="border-bottom mb-0"  >'+classjobj.productClass+'</h5></div>';
+        content +='<div class="d-flex flex-wrap">';
+        $.each(classjobj.Data ,function(j,jobj){
+        	content +='<div class="col-lg-4 col-md-6 col-sm-6  col-xs-6 col-6 mt-2 px-1" style="cursor:pointer">';
+            content +='<div class="card rounded shadow-sm ">';
+            content +='<a href="${contextPath}/productEShop?id='+jobj.productid+'" class="proImg">';
+               content +='<img class="card-img-top" src="${contextPath}/img/product/'+jobj.productImg+'" alt="'+jobj.productImg+'"></a>';
+               content +='<div class="card-body" ><h5 class="card-title my-0"><b>'+jobj.productionName+'</b></h5>';
+            if(jobj.isDiscountprice==true){
+              content +='<h5 class="card-title my-0 proPrice">N.T<S>'+jobj.prices+'</S>&nbsp;<b style="color:Tomato;">'+jobj.discountPrice+'</b>元</h5>';   
+            }else{
+               content +='<h5 class="card-title my-0 proPrice">N.T<span>'+jobj.prices+'</span>元</h5>';  
+            }
+            if(jobj.subordinate_Name!==null && jobj.subordinate_Name!== undefined){
+                content +='<p class="card-text"><span class="badge badge-pill badge-info "><b>'+jobj.subordinate_Name+'</b></span></p>';
+            }
+            
+            if(jobj.productExist!==true || jobj.productAmount==0){
+               content +='<p class="card-text"><span class="badge badge-pill badge-danger soldOut"><b>已售完</b></span></p>';
+            }
+            content +='</div></div></div>';
+               });
+        content +='</div></div>';
+				});
+		$("#showbox").append(content);
+	});
+
+});
+</script>
 <script type="text/javascript">
     //slider
     $('.carousel').carousel({
@@ -110,7 +112,6 @@ $.getJSON("${contextPath}/resource/json/product.json", function(json){
 	$(document).ready(function() {
 		$("#listgroup > a").click(function(){
             $(this).siblings().removeClass("active");
-            console.log("clicked!");
             $(this).addClass(" active");
             
         });

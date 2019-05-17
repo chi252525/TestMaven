@@ -4,6 +4,9 @@
 <%@ page import="java.text.*"%>
 <%@ page import="com.welljoint.entity.*"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%
+OrdersPhoneVO opVO=(OrdersPhoneVO)session.getAttribute("shoppingorder");
+%>
 <!DOCTYPE html>
 <html lang="zh-Hant">
   <head>
@@ -14,6 +17,7 @@
     <title>購物車</title>
     <%@ include file="/templete/link.jsp" %>
     <link href="<%=request.getContextPath()%>/resource/css/cart.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/resource/css/listOneProduct.css" rel="stylesheet">
   </head>
   <body>
     <%@include file="/templete/header.jsp" %>
@@ -53,28 +57,54 @@
 					</ul>
 				</div>
 			</c:if>
-		</div>
-		<!-- 訂購資訊 -->
-		<form name="insert" id="submitForm" class="col-12" method="post" action="${contextPath}/Order/addOrder">
+		</div>		
+<!-- 		===================================M01FORM============================================================= -->
+		<form name="insert" id="submitFormM01" class="col-12" method="post" action="${contextPath}/Order/addOrder">
 			<div class="col-sm-12 orderInfo">
 				<div class="pageTitle"><h5>訂購資訊</h5></div>
 					<div class="card bg-faded mt-3 mb-3">
 						<div class="card-block px-3 py-3">
 							<div class=" d-flex flex-wrap px-0 ">
 								<div class="col-12 px-2">
+											<div class="form-group"><small class="note">* </small><label for="orderstatus">取餐方式:</label>
+										<input type="text" id="orderstatus" name="orderstatus"class="form-control" value="<%=opVO.getOrderStatus()%>" readonly  >
+											</div>
+											<div class="form-group"><label for="note">備註:</label>
+										<textarea class="form-control" id="note" rows="3" name="note" placeholder="輸入特別需求 限20字內"></textarea>
+									</div>
+										</div>
+							</div>
+						</div>
+					</div><!-- /card -->
+			</div>
+			<!-- btn -->
+			<div class="col-12 d-flex flex-wrap">
+				<div class="col-md-6 col-sm-12 px-1 mt-1 mb-2">
+					<a href="${contextPath}/frontstage/productEShop.jsp" class="btn btn-dark btn-lg btn-block">返回</a>
+				</div>
+				<div class="col-md-6 col-sm-12 px-1 mt-1 mb-2">
+					<button type="button" class="btn btn-danger btn-block btn-lg" id="form_confirmbtn" data-toggle="modal" data-target="#myModal" id="confirmorderbtn">確認訂購</button>
+				</div>
+			</div>
+			</form>	
+		<!-- 		===================================M01FORM============================================================= -->
+			<!-- 		===================================M02FORM============================================================= -->
+		<form name="insert" id="submitFormM02" class="col-12" method="post" action="${contextPath}/Order/addOrder">
+			<div class="col-sm-12 orderInfo">
+				<div class="pageTitle"><h5>訂購資訊</h5></div>
+					<div class="card bg-faded mt-3 mb-3">
+						<div class="card-block px-3 py-3">
+							<div class=" d-flex flex-wrap px-0 ">
+								<div class="col-lg-6 col-12 px-2">
+								<small class="note">* </small><label for="payBy">付款方式:</label>
 											<div class="form-group">
-												<small class="note">* </small><label for="payBy">付款方式:</label>
-												<div class="custom-control custom-radio">
-													<input type="radio" id="payByCash" name="payBy" value="現金" class="custom-control-input">
-													<label class="custom-control-label" for="payByCash">自取到店付款</label>
-												</div>
-												<div class="custom-control custom-radio">
-													<input type="radio" id="ApplePay" name="payBy" value="ApplePay" class="custom-control-input">
-													<label class="custom-control-label" for="ApplePay">ApplePay</label>
-												</div>
-												<div class="custom-control custom-radio">
-													<input type="radio" id="GooglePay" name="payBy" value="GooglePay" class="custom-control-input">
-													<label class="custom-control-label" for="GooglePay">GooglePay</label>
+												<div class="attr_css col-12">
+												<input type="radio" name="payBy" id="payByCash"  value="現金" checked >
+												<label for="payByCash" >現金</label>
+												<input type="radio" name="payBy" id="ApplePay"  value="現金"  >
+												<label for="ApplePay" >ApplePay</label>
+												<input type="radio" name="payBy" id="GooglePay"  value="現金"  >
+												<label for="GooglePay" >GooglePay</label>
 												</div>
 											</div>
 
@@ -86,12 +116,12 @@
 										<input name="taketime2" class="form-control" id="taketime2" value="預計取餐時間" type="text" >
 											</div>
 											<div class="form-group"><small class="note">* </small><label for="orderstatus">取餐方式:</label>
-										<input type="text" id="orderstatus" name="orderstatus"class="form-control" value="外帶" readonly  >
+										<input type="text" id="orderstatus" name="orderstatus"class="form-control" value="<%=opVO.getOrderStatus()%>" readonly  >
 											</div>
 										</div>
 										<div class="col-lg-6 col-md-12 col-sm-12 px-2">
 											<div class="form-group"><label for="orderer">訂購人:</label>
-										<input type="text" value="王先生" id="orderer" maxlength="40" name="orderer" class="form-control" placeholder="選填 e.g.王先生">
+										<input type="text" value="" id="orderer" maxlength="40" name="orderer" class="form-control" placeholder="選填 e.g.王先生">
 											</div>	
 											<div class="form-group"><small class="note">* </small><label for="phoneNum">訂購人手機:</label>
 										<input type="text" id="phoneNum" value="0912456123" name="phoneNum"class="form-control" value="" placeholder="格式:09XXXXXXXX" pattern="[0-9]{10}" title="09XXXXXXXX">
@@ -117,13 +147,14 @@
 				</div>
 			</div>
 			</form>	
+				<!-- 		===================================M02FORM============================================================= -->
      	</div> <!-- /.row -->
     </div> <!-- /.container -->
 	<div class="modal fade" tabindex="3" role="dialog" id="myModal">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title">總計NT${totalpriceInt} 元</h4>
+					<h4 class="modal-title">總計NT${totalPrice} 元</h4>
 				</div>
 				<div class="modal-body">
 <%-- 						<p>預計<%=taketime1%> <%=taketime2%>取餐</p> --%>
@@ -138,6 +169,20 @@
 	</div><!-- /.modal -->
     <script type="text/javascript">
 	    $(document).ready(function() {
+	    	var takeinfo=null;
+	    	if('${TAKEINFO}'==="M01"){
+	    		takeinfo='M01';
+	    		$('#submitFormM01').show();
+	    		$('#submitFormM02').hide();
+	    		
+	    	}
+	    	if('${TAKEINFO}'==="M02"){
+	    		takeinfo='M02';
+	    		$('#submitFormM02').show();
+	    		$('#submitFormM01').hide();
+	    		
+	    	}
+	    	
 	        //show errorMsgs
 	        <c:if test="${not empty errorMsgs}">
 	          <c:forEach var="message" items="${errorMsgs}">
@@ -145,12 +190,18 @@
 	          </c:forEach>
 					</c:if>
 
-					$('#form_confirmbtn').on('click', function(e){
-							$('#myModal').modal('show');
-							return false;
+		$('#form_confirmbtn').on('click', function(e){
+			$('#myModal').modal('show');
+			return false;
        	  	});
           $( "#confirmbtn" ).click(function() {
-          	$( "#submitForm" ).submit();
+        	  if(takeinfo==='M01'){
+        		  $( "#submitFormM01" ).submit();
+        	  }
+        	  if(takeinfo==='M02'){
+        		  $( "#submitFormM02" ).submit();
+        	  }
+          	
           });
 	    });
         $('#taketime1').datepicker({

@@ -10,12 +10,18 @@
 <script>
 $(document).ready(function() {
 	   var eshopbarcontent='';
-	   $.getJSON("<%=request.getContextPath()%>/resource/json/eshopbar.json", function(json){
+	   $.getJSON("${contextPath}/resource/json/eshopbar.json", function(json){
 	   	$.each(json.eshopbar, function(k,jobj){
 	   		eshopbarcontent+='<a href="${contextPath}/frontstage/productEShop.jsp#'+jobj.ProductClassKey+'" class="list-group-item list-group-item-action">';
 	   		eshopbarcontent+=jobj.ProductClass+'&nbsp;<span class="badge badge-pill badge-dark float-right" ><b>'+jobj.size+'</b></span></a>';
 	   	});
 	   	$("#listgroup").append(eshopbarcontent);
+	   	$("#listgroup a:first").addClass("active");
+	   	$("#listgroup > a").click(function(){
+	   	    $(this).siblings().removeClass("active");
+	   	    $(this).addClass("active");   
+	   	});
+	   	
 	   });
 });
 </script>

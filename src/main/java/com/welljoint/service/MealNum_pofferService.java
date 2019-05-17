@@ -10,15 +10,6 @@ public class MealNum_pofferService implements MealNum_pofferService_interface {
 	@Autowired
 	private MealNum_pofferDAO_interface dao;
 
-	public MealNum_pofferVO update(Integer mealnum_current, String counter, Timestamp changeStamp) {
-		MealNum_pofferVO mpoVO = new MealNum_pofferVO();
-		mpoVO.setMealnum_current(mealnum_current);
-		mpoVO.setCounter(counter);
-		mpoVO.setChangeStamp(changeStamp);
-		dao.update(mpoVO);
-		return mpoVO;
-	};
-
 	public void update_dailyReset() {
 		dao.update_dailyReset();
 	};
@@ -29,6 +20,10 @@ public class MealNum_pofferService implements MealNum_pofferService_interface {
 
 	public MealNum_pofferVO findByToday() {
 		return dao.findByToday();
+	}
+
+	public void update(MealNum_pofferVO mpoVO) {
+		dao.update(mpoVO);
 	}
 
 }

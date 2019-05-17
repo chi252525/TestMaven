@@ -9,5 +9,6 @@ public interface StoreInformationDAO_interface {
     public void update(StoreInformationVO storeInformationVO);
     public void delete(Integer id);
     public StoreInformationVO findByPrimaryKey(Integer id);
+    public StoreInformationVO findByStatus(Boolean status);
     public List<StoreInformationVO> getAll();
 }

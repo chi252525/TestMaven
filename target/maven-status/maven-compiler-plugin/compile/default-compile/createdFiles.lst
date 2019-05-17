@@ -18,7 +18,6 @@ com\welljoint\service\AttributeGroupService.class
 com\welljoint\service\DiscountService_interface.class
 com\welljoint\rest\OrderController.class
 com\welljoint\entity\AttributeGroupVO.class
-com\welljoint\entity\ProductCartVO.class
 com\welljoint\dao\UserDaoImpl.class
 com\welljoint\entity\AttributeSingleVO.class
 com\test\testlog4j.class
@@ -34,6 +33,7 @@ com\welljoint\dao\InnerNumDAO_interface.class
 com\welljoint\dao\AttributeGroupHibernateDAO.class
 com\welljoint\dao\InnerNumHibernateDAO.class
 com\web\apiService\PosApiService.class
+com\web\util\Configproperties.class
 com\welljoint\entity\DiscountVO.class
 com\welljoint\service\ProductService_interface.class
 com\welljoint\dao\AttributeSingleHibernateDAO.class

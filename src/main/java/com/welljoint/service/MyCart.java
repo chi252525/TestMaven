@@ -41,6 +41,12 @@ public class MyCart {
 				Double shoppingSubtotalprice=countSubtotalprice(pVO_inhm,shoppingQty + pVO.getShoppingQty(),true);
 				pVO_inhm.setShoppingSubtotalprice(shoppingSubtotalprice);//更新小計
 				hm.put(pVO.hashCode(), pVO_inhm);
+				Set<Integer> set = hm.keySet();
+				Iterator it= set.iterator();
+				while(it.hasNext()) {
+					Object myKey = it.next();
+					System.out.println(myKey +"="+ hm.get(myKey));
+				}
 			};
 		} else {
 //			System.out.println("不重複的商品");
@@ -51,12 +57,12 @@ public class MyCart {
 			Double shoppingSubtotalprice=countSubtotalprice(newpVO,pVO.getShoppingQty(),true);
 			newpVO.setShoppingSubtotalprice(shoppingSubtotalprice);
 			hm.put(newpVO.hashCode(), newpVO);
-//			Set<Integer> set = hm.keySet();
-//			Iterator it= set.iterator();
-//			while(it.hasNext()) {
-//				Object myKey = it.next();
-//				System.out.println(myKey +"="+ hm.get(myKey));
-//			}
+			Set<Integer> set = hm.keySet();
+			Iterator it= set.iterator();
+			while(it.hasNext()) {
+				Object myKey = it.next();
+				System.out.println(myKey +"="+ hm.get(myKey));
+			}
 		}
 	}
 
@@ -66,13 +72,16 @@ public class MyCart {
 		Double oneproduct_price=pVO.getShoppingPrice();
 		String[] shoppingNote_arr = pVO.getShoppingNote().split(",");
 		for (String oneattrName : shoppingNote_arr) {
-			AttributeSingleVO asVO = attrsSvc.findByAttributeName(oneattrName);
-			Double asVOprice=asVO.getPrice();
-			if (asVO.getPrice() != null && asVO.getPrice()!=0) {
-				if (actionbln == true) {//true是加
-					oneproduct_price+= asVOprice;
+			if(oneattrName!=null && oneattrName.trim().length()!=0) {
+				AttributeSingleVO asVO = attrsSvc.findByAttributeName(oneattrName);
+				Double asVOprice=asVO.getPrice();
+				if (asVO.getPrice() != null && asVO.getPrice()!=0) {
+					if (actionbln == true) {//true是加
+						oneproduct_price+= asVOprice;
+					}
 				}
 			}
+			
 		}
 		shoppingSubtotalprice=(oneproduct_price*shoppingQty);
 		return shoppingSubtotalprice;
@@ -117,12 +126,12 @@ public class MyCart {
 	}
 
 	// 更新商品
-	public void updateProduct(Integer hashid, String quantity) {
-		ProductVO pVO = hm.get(hashid);
+	public void updateProduct(Integer strhashCode, String quantity) {
+		ProductVO pVO = hm.get(strhashCode);
 		pVO.setShoppingQty(Integer.parseInt(quantity));
 		Double shoppingSubtotalprice=countSubtotalprice(pVO,Integer.parseInt(quantity),true);
 		pVO.setShoppingSubtotalprice(shoppingSubtotalprice);//更新小計
-		hm.put(hashid, pVO);
+		hm.put(strhashCode, pVO);
 	}
 
 	// 顯示該購物中的所有商品信息

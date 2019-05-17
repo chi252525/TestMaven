@@ -37,10 +37,8 @@ public class MealNum_pofferHibernateDAO extends HibernateDaoSupport implements M
 
 	@Override
 	public MealNum_pofferVO findByToday() {
-		MealNum_pofferVO mpVO = (MealNum_pofferVO) getHibernateTemplate().find(FINDBYTODAY);
+		MealNum_pofferVO mpVO = (MealNum_pofferVO) getHibernateTemplate().find(FINDBYTODAY).get(0);
 		return mpVO;
 	}
 
-	public static void main(String[] args) {
-	}
 }

@@ -19,4 +19,9 @@ public class StoreInformationService implements StoreInformationService_interfac
     public List<StoreInformationVO> getAll() {
         return dao.getAll();
     }
+
+	@Override
+	public StoreInformationVO findByStatus(Boolean status) {
+		return dao.findByStatus(status);
+	}
 }

@@ -25,11 +25,13 @@ import com.welljoint.entity.AttributeSingleVO;
 import com.welljoint.entity.BannerVO;
 import com.welljoint.entity.DiscountVO;
 import com.welljoint.entity.ProductVO;
+import com.welljoint.entity.StoreInformationVO;
 import com.welljoint.service.AttributeGroupService;
 import com.welljoint.service.AttributeSingleService;
 import com.welljoint.service.BannerService;
 import com.welljoint.service.DiscountService;
 import com.welljoint.service.ProductService;
+import com.welljoint.service.StoreInformationService;
 
 @WebListener
 public class CustomListener implements ServletContextListener {
@@ -42,6 +44,7 @@ public class CustomListener implements ServletContextListener {
 	private AttributeSingleService attrsSvc;
 	private DiscountService disSvc;
 	private BannerService bSvc;
+	private StoreInformationService storeSvc;
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
 		ServletContext servletContext = event.getServletContext();
@@ -57,6 +60,10 @@ public class CustomListener implements ServletContextListener {
 		String rootPath = servletContext.getRealPath("/");
 		System.out.println("contextPath:{" + contextPath + "},rootPath:{" + rootPath + "}");
 		LOGGER.info("contextPath:{},rootPath:{}", contextPath, rootPath);
+		// =====================撈資料庫中啟用中的店家資料=====================
+		storeSvc= applicationContext.getBean(StoreInformationService.class);
+		StoreInformationVO storeVO=storeSvc.findByStatus(true);
+		servletContext.setAttribute("activeStoreVO", storeVO);
 		// =====================撈資料庫中產品資料=====================
 		getAllproducttoJSON(servletContext);
 		// =====================撈資料庫中Banner資料=====================

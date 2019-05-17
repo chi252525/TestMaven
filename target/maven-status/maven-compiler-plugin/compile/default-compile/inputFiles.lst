@@ -1,6 +1,7 @@
 C:\Ning_D\WebApp\eclipse_WTP_workspace\TestMaven\src\main\java\com\welljoint\service\InnerNumService.java
 C:\Ning_D\WebApp\eclipse_WTP_workspace\TestMaven\src\main\java\com\welljoint\service\LoginServiceImpl.java
 C:\Ning_D\WebApp\eclipse_WTP_workspace\TestMaven\src\main\java\com\web\apiService\PosApiService.java
+C:\Ning_D\WebApp\eclipse_WTP_workspace\TestMaven\src\main\java\com\web\util\Configproperties.java
 C:\Ning_D\WebApp\eclipse_WTP_workspace\TestMaven\src\main\java\com\welljoint\dao\BannerHibernateDAO.java
 C:\Ning_D\WebApp\eclipse_WTP_workspace\TestMaven\src\main\java\com\welljoint\entity\DiscountVO.java
 C:\Ning_D\WebApp\eclipse_WTP_workspace\TestMaven\src\main\java\com\web\apiService\OrderAPIService.java
@@ -53,7 +54,6 @@ C:\Ning_D\WebApp\eclipse_WTP_workspace\TestMaven\src\main\java\com\welljoint\ser
 C:\Ning_D\WebApp\eclipse_WTP_workspace\TestMaven\src\main\java\com\welljoint\rest\LoginController.java
 C:\Ning_D\WebApp\eclipse_WTP_workspace\TestMaven\src\main\java\com\welljoint\rest\ProductController.java
 C:\Ning_D\WebApp\eclipse_WTP_workspace\TestMaven\src\main\java\com\pos\app\DetailVO.java
-C:\Ning_D\WebApp\eclipse_WTP_workspace\TestMaven\src\main\java\com\welljoint\entity\ProductCartVO.java
 C:\Ning_D\WebApp\eclipse_WTP_workspace\TestMaven\src\main\java\com\welljoint\service\AttributeGroupService.java
 C:\Ning_D\WebApp\eclipse_WTP_workspace\TestMaven\src\main\java\com\welljoint\service\MealNum_pofferService.java
 C:\Ning_D\WebApp\eclipse_WTP_workspace\TestMaven\src\main\java\com\welljoint\service\DiscountService_interface.java

@@ -11,7 +11,7 @@ import com.welljoint.entity.StoreInformationVO;
 @Repository
 public class StoreInformationHibernateDAO extends HibernateDaoSupport implements StoreInformationDAO_interface{
 	private static final String GET_ALL_STMT = "from StoreInformationVO where status =1 order by id";
-	private static final String FINBYPRIMARYKEY="from StoreInformationVO where id=?";
+	private static final String FINBYSTATUS="from StoreInformationVO where status=?";
 	//用來注入sessionFactory（不注入會報錯）
     @Resource(name = "sessionFactory")
     public void setSessionFactoryOverride(SessionFactory sessionFactory) {
@@ -46,5 +46,9 @@ public class StoreInformationHibernateDAO extends HibernateDaoSupport implements
 		List<StoreInformationVO> storeInformationVOs = (List<StoreInformationVO>) getHibernateTemplate().find(GET_ALL_STMT);
         return storeInformationVOs;
 	}
-	public static void main(String[] args) {}
+	@Override
+	public StoreInformationVO findByStatus(Boolean status) {
+		StoreInformationVO storeInformationVO = (StoreInformationVO) getHibernateTemplate().find(FINBYSTATUS,status).get(0);
+        return storeInformationVO;
+	}
 }

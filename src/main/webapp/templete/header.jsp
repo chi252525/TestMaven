@@ -1,18 +1,19 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> 
 <%@ page import="com.welljoint.entity.*"%>
 <%@ page import="java.text.*"%>
 
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark" id="navbar">
       <div class="container">
-      <c:if test="${not empty shoppingcart}">
+      <c:if test="${not empty shoppingList}">
         <a class="navbar-brand" href="<%=request.getContextPath()%>/index.jsp" 
        data-toggle="modal"data-target="#restart">
        <img src="<%=request.getContextPath()%>/img/logo/logo3.png" width="30" height="30" class="d-inline-block align-top" alt="">
        &nbsp;點餐系統</a>
       </c:if>
-      <c:if test="${empty shoppingcart}">
+      <c:if test="${empty shoppingList}">
        <a class="navbar-brand" href="<%=request.getContextPath()%>/index.jsp" >
    		<img src="<%=request.getContextPath()%>/img/logo/logo3.png" width="30" height="30" class="d-inline-block align-top" alt="">
       &nbsp;點餐系統</a>
@@ -25,11 +26,11 @@
               <a class="nav-link" href="<%=request.getContextPath()%>/AboutStore"><i class="fa fa-home"></i>&nbsp;&nbsp;關於我們</a>
             </li>
             <li class="">
-              <a class="nav-link" href="<%=request.getContextPath()%>/frontstage/showmeal/showMeal.jsp"><i class=" fas fa-clipboard"></i>&nbsp; 訂購紀錄</a>
+              <a class="nav-link" href="<%=request.getContextPath()%>/frontstage/showMeal.jsp"><i class=" fas fa-clipboard"></i>&nbsp; 訂購紀錄</a>
             </li>
             <li class="">
               <a class="nav-link" href="<%=request.getContextPath()%>/frontstage/Cart.jsp">
-              <i class="fa fa-shopping-cart"></i><span class="sr-only">(current)</span>&nbsp;購物車<c:if test="${not empty shoppingcart}"> <span class=" badge badge-pill badge-danger">2</span> </c:if>
+              <i class="fa fa-shopping-cart"></i><span class="sr-only">(current)</span>&nbsp;購物車<c:if test="${not empty shoppingList}"> <span class=" badge badge-pill badge-danger">${fn:length(shoppingList)}</span> </c:if>
               </a>
             </li>
           </ul>

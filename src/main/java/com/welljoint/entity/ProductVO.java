@@ -45,14 +45,14 @@ public class ProductVO implements java.io.Serializable{
 			return false;
 		}
 		ProductVO pVO =(ProductVO)obj;
-		if(this.id==pVO.id && this.shoppingNote.equals(pVO.shoppingNote)) {
+		if(this.id==pVO.id) {
 			return true;
 		}else {
 			return false;	
 		}
 	}
 	public int hashCode() {
-		return this.shoppingNote.hashCode() *this.id;
+		return this.shoppingNote.hashCode() + this.id;
 	}
 	
 	public Integer getId() {

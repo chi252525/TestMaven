@@ -1,10 +1,12 @@
 package com.welljoint.entity;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 import com.welljoint.entity.OrderPhoneDetailVO;
 
-public class OrdersPhoneVO {
+public class OrdersPhoneVO implements Serializable{
+	 private static final long serialVersionUID = 1L;
 	private Set<OrderPhoneDetailVO> opdVOs = new HashSet<OrderPhoneDetailVO>();
 	private String uuid;
 	private String ordersNum;
@@ -38,7 +40,6 @@ public class OrdersPhoneVO {
 	private String randomNum;
 	private String sell_No;
 	private String TC8_ReturnMessage;
-	private String mealQrcode;
 	
 	public Set<OrderPhoneDetailVO> getOpdVOs() {
 		return opdVOs;
@@ -237,18 +238,6 @@ public class OrdersPhoneVO {
 	}
 	public void setTC8_ReturnMessage(String tC8_ReturnMessage) {
 		TC8_ReturnMessage = tC8_ReturnMessage;
-	}
-	/**
-	 * @return the mealQrcode
-	 */
-	public String getMealQrcode() {
-		return mealQrcode;
-	}
-	/**
-	 * @param mealQrcode the mealQrcode to set
-	 */
-	public void setMealQrcode(String mealQrcode) {
-		this.mealQrcode = mealQrcode;
 	}
 
 

@@ -1,16 +1,20 @@
 package com.web.apiService;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.welljoint.entity.*;
 import com.welljoint.service.OrderPhoneDetailService;
@@ -18,17 +22,30 @@ import com.welljoint.service.OrdersPhoneService;
 import com.welljoint.service.StoreInformationService;
 import com.pos.app.DetailVO;
 import com.pos.app.MasterVO;
+import com.web.util.Configproperties;
 
 
-
-@Path("/OrderAPIService")
+@Controller 
+@RequestMapping("/OrderAPIService")
 public class OrderAPIService {
-
-	@GET
-	@Path("/isPaidorder")
+	@Autowired
+	 private Configproperties Configproperties; //引用统一的参数配置类
+	@Autowired
+	private OrdersPhoneService oSvc;
+	@Autowired
+	private StoreInformationService siSvc;
+	@Autowired
+	private OrderPhoneDetailService dSvc;
+	
+	@RequestMapping(value="/" ,method = RequestMethod.GET)
+	public void getisPaidorder() {
+		System.out.println("in");
+	}
+	
+	@RequestMapping(value="/isPaidorder" ,method = RequestMethod.GET)
+	@ResponseBody
 	@Produces({ MediaType.APPLICATION_JSON + ";charset=UTF-8" })
-	public String getisPaidorder(@QueryParam("uuid") String uuid) {
-		OrdersPhoneService oSvc = new OrdersPhoneService();
+	public JSONObject getisPaidorder(@RequestParam("uuid") String uuid ) {
 		JSONObject returnObj = new JSONObject();
 		JSONObject dataJsonObj = new JSONObject();
 		String jsonStr=null;
@@ -53,15 +70,14 @@ public class OrderAPIService {
 			e.printStackTrace();
 		}
 		jsonStr = returnObj.toString();
-		return jsonStr;
-
+		return returnObj;
 	}
 
-	@GET
-	@Path("/getorder")
+	
+	@RequestMapping(value="/getorder" ,method = RequestMethod.GET)
+	@ResponseBody
 	@Produces({ MediaType.APPLICATION_JSON + ";charset=UTF-8" })
-	public String getOrder(@QueryParam("uuid") String uuid) {
-		OrdersPhoneService oSvc = new OrdersPhoneService();
+	public String getOrder(@RequestParam("uuid") String uuid) {
 		MasterVO mVo = new MasterVO();
 		JSONObject mVojsonObj = new JSONObject();
 		JSONObject returnObj = new JSONObject();
@@ -71,109 +87,118 @@ public class OrderAPIService {
 			if (!(uuid == null || uuid.trim().length() == 0)) {
 				OrdersPhoneVO vo = oSvc.findByUuid(uuid);
 				if (vo != null) {
-					String ordersNum = vo.getOrdersNum();
-					mVo.setInvoicesNum(ordersNum);
-					StoreInformationService siSvc = new StoreInformationService();
-					List<StoreInformationVO> siList = siSvc.getAll();
-					String name = null;
-					String store = null;
-					String value = null;
-					if (siList != null) {
-						name = siList.get(0).getName(); // 公司
-						store = siList.get(0).getStore(); // 店家
-						value = siList.get(0).getValue(); // 統編
-					}
-					mVo.setName(name);
-					mVo.setStore(store);
-					String invoicePeriod = null;
-					mVo.setInvoicePeriod(invoicePeriod);
-					java.util.Date utilDate = new java.util.Date(vo.getOrderDate().getTime());
-					DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					String invoicesDate = dateFormat.format(utilDate);
-					System.out.println("invoicesDate : " + invoicesDate);
-					mVo.setInvoicesDate(invoicesDate);
-					Double invoicesTotalDouble = vo.getInvoicesTotal();
-					String invoicesTotal = String.valueOf(invoicesTotalDouble.doubleValue());
-					mVo.setInvoicesTotal(invoicesTotal);
-					mVo.setValue(value);
-					String note = vo.getNote();
-					mVo.setNote(note);
-					String customerValue = vo.getCustomerValue();
-					mVo.setCustomerValue(customerValue);
-					String orderStatus = vo.getOrderStatus();
-					mVo.setOrderStatus(orderStatus);
-					String orderStatusKey = vo.getOrderStatusKey();
-					mVo.setOrderStatusKey(orderStatusKey);
-					Boolean statusBoolean = vo.getStatus();
-					String status = String.valueOf(statusBoolean.booleanValue());
-					mVo.setStatus(status);
-					String toolCode = vo.getToolCode();
-					mVo.setToolCode(toolCode);
-					String loveCode = vo.getLoveCode();
-					mVo.setLoveCode(loveCode);
-					String tax = vo.getTax();
-					mVo.setTax(tax);
-					String payBy = vo.getPayBy();
-					mVo.setPayBy(payBy);
-					String cancel = ""; // 不可為null
-					mVo.setCancel(cancel);
-					String internalNumber = vo.getInternalNumber();
-					mVo.setInternalNumber(internalNumber);
-					String reprintNumber = vo.getReprintNumber();
-					mVo.setReprintNumber(reprintNumber);
-					java.util.Date takeTimeDate = new java.util.Date(vo.getTakeTime());
-					String takeTime = dateFormat.format(takeTimeDate);
-					mVo.setTakeTime(takeTime);
-					String orderBy = vo.getOrderBy();
-					mVo.setOrderBy(orderBy);
-					String randomNum = vo.getRandomNum();
-					mVo.setRandomNum(randomNum);
-					Integer mOrderStatusInteger = 1; // 1.儲存 2.完成 3.取消
-					String mOrderStatus = String.valueOf(mOrderStatusInteger.intValue());
-					mVo.setMOrderStatus(mOrderStatus);
-					String sell_no = null; // set null
-					mVo.setSell_no(sell_no);
-					String mealNum = String.valueOf(vo.getMealNum().intValue());
-					mVo.setMealNum(mealNum);
+					Timestamp ordersDate = vo.getOrderDate();
+					long orderDate_long =ordersDate.getTime();
+					if(Configproperties.ORDERTIMEOUT!=null) {
+						long settingtime=Integer.parseInt(Configproperties.ORDERTIMEOUT)*60*1000;
+						long currenttime= System.currentTimeMillis();
+						if(currenttime>(orderDate_long+settingtime)) {
+							returnObj.put("blnStatus", false);
+							returnObj.put("strMsg", "查詢失敗,訂單已過期");
+						}else {
+							String ordersNum = vo.getOrdersNum();
+							mVo.setInvoicesNum(ordersNum);
+							List<StoreInformationVO> siList = siSvc.getAll();
+							String name = null;
+							String store = null;
+							String value = null;
+							if (siList != null) {
+								name = siList.get(0).getName(); // 公司
+								store = siList.get(0).getStore(); // 店家
+								value = siList.get(0).getValue(); // 統編
+							}
+							mVo.setName(name);
+							mVo.setStore(store);
+							String invoicePeriod = null;
+							mVo.setInvoicePeriod(invoicePeriod);
+							java.util.Date utilDate = new java.util.Date(vo.getOrderDate().getTime());
+							DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+							String invoicesDate = dateFormat.format(utilDate);
+							System.out.println("invoicesDate : " + invoicesDate);
+							mVo.setInvoicesDate(invoicesDate);
+							Double invoicesTotalDouble = vo.getInvoicesTotal();
+							String invoicesTotal = String.valueOf(invoicesTotalDouble.doubleValue());
+							mVo.setInvoicesTotal(invoicesTotal);
+							mVo.setValue(value);
+							String note = vo.getNote();
+							mVo.setNote(note);
+							String customerValue = vo.getCustomerValue();
+							mVo.setCustomerValue(customerValue);
+							String orderStatus = vo.getOrderStatus();
+							mVo.setOrderStatus(orderStatus);
+							String orderStatusKey = vo.getOrderStatusKey();
+							mVo.setOrderStatusKey(orderStatusKey);
+							Boolean statusBoolean = vo.getStatus();
+							String status = String.valueOf(statusBoolean.booleanValue());
+							mVo.setStatus(status);
+							String toolCode = vo.getToolCode();
+							mVo.setToolCode(toolCode);
+							String loveCode = vo.getLoveCode();
+							mVo.setLoveCode(loveCode);
+							String tax = vo.getTax();
+							mVo.setTax(tax);
+							String payBy = vo.getPayBy();
+							mVo.setPayBy(payBy);
+							String cancel = ""; // 不可為null
+							mVo.setCancel(cancel);
+							String internalNumber = vo.getInternalNumber();
+							mVo.setInternalNumber(internalNumber);
+							String reprintNumber = vo.getReprintNumber();
+							mVo.setReprintNumber(reprintNumber);
+							java.util.Date takeTimeDate = new java.util.Date(vo.getTakeTime());
+							String takeTime = dateFormat.format(takeTimeDate);
+							mVo.setTakeTime(takeTime);
+							String orderBy = vo.getOrderBy();
+							mVo.setOrderBy(orderBy);
+							String randomNum = vo.getRandomNum();
+							mVo.setRandomNum(randomNum);
+							Integer mOrderStatusInteger = 1; // 1.儲存 2.完成 3.取消
+							String mOrderStatus = String.valueOf(mOrderStatusInteger.intValue());
+							mVo.setMOrderStatus(mOrderStatus);
+							String sell_no = null; // set null
+							mVo.setSell_no(sell_no);
+							String mealNum = String.valueOf(vo.getMealNum().intValue());
+							mVo.setMealNum(mealNum);
 
-					// handle null values for JSON object
-					mVojsonObj.put("invoicesNum", vo.getOrdersNum() == null ? JSONObject.NULL : vo.getOrdersNum());
-					mVojsonObj.put("name", name == null ? JSONObject.NULL : name);
-					mVojsonObj.put("store", store == null ? JSONObject.NULL : store);
-					mVojsonObj.put("invoicePeriod", invoicePeriod == null ? JSONObject.NULL : invoicePeriod);
-					mVojsonObj.put("invoicesDate", invoicesDate == null ? JSONObject.NULL : invoicesDate);
-					mVojsonObj.put("invoicesTotal", invoicesTotal == null ? JSONObject.NULL : invoicesTotal);
-					mVojsonObj.put("value", value == null ? JSONObject.NULL : value);
-					mVojsonObj.put("note", note == null ? JSONObject.NULL : note);
-					mVojsonObj.put("customerValue", customerValue == null ? JSONObject.NULL : customerValue);
-					mVojsonObj.put("orderStatus", orderStatus == null ? JSONObject.NULL : orderStatus);
-					mVojsonObj.put("orderStatusKey", orderStatusKey == null ? JSONObject.NULL : orderStatusKey);
-					mVojsonObj.put("status", status == null ? JSONObject.NULL : status);
-					mVojsonObj.put("toolCode", toolCode == null ? JSONObject.NULL : toolCode);
-					mVojsonObj.put("loveCode", loveCode == null ? JSONObject.NULL : loveCode);
-					mVojsonObj.put("tax", tax == null ? JSONObject.NULL : tax);
-					mVojsonObj.put("payBy", payBy == null ? JSONObject.NULL : payBy);
-					mVojsonObj.put("cancel", cancel == null ? JSONObject.NULL : cancel);
-					mVojsonObj.put("internalNumber", internalNumber == null ? JSONObject.NULL : internalNumber);
-					mVojsonObj.put("reprintNumber", reprintNumber == null ? JSONObject.NULL : reprintNumber);
-					mVojsonObj.put("takeTime", takeTime == null ? JSONObject.NULL : takeTime);
-					mVojsonObj.put("orderBy", orderBy == null ? JSONObject.NULL : orderBy);
-					mVojsonObj.put("randomNum", randomNum == null ? JSONObject.NULL : randomNum);
-					mVojsonObj.put("mOrderStatus", mOrderStatus == null ? JSONObject.NULL : mOrderStatus);
-					mVojsonObj.put("sellNo", sell_no == null ? JSONObject.NULL : sell_no);
-					mVojsonObj.put("mealNum", mealNum == null ? JSONObject.NULL : mealNum);
-					OrderPhoneDetailService dSvc = new OrderPhoneDetailService();
-					List<OrderPhoneDetailVO> opdList = dSvc.findByOrderNum(ordersNum);
-					fillDetailVOToList(opdList, dList);
-					returnObj.put("blnStatus", true);
-					returnObj.put("strMsg", "掃描成功");
+							// handle null values for JSON object
+							mVojsonObj.put("invoicesNum", vo.getOrdersNum() == null ? JSONObject.NULL : vo.getOrdersNum());
+							mVojsonObj.put("name", name == null ? JSONObject.NULL : name);
+							mVojsonObj.put("store", store == null ? JSONObject.NULL : store);
+							mVojsonObj.put("invoicePeriod", invoicePeriod == null ? JSONObject.NULL : invoicePeriod);
+							mVojsonObj.put("invoicesDate", invoicesDate == null ? JSONObject.NULL : invoicesDate);
+							mVojsonObj.put("invoicesTotal", invoicesTotal == null ? JSONObject.NULL : invoicesTotal);
+							mVojsonObj.put("value", value == null ? JSONObject.NULL : value);
+							mVojsonObj.put("note", note == null ? JSONObject.NULL : note);
+							mVojsonObj.put("customerValue", customerValue == null ? JSONObject.NULL : customerValue);
+							mVojsonObj.put("orderStatus", orderStatus == null ? JSONObject.NULL : orderStatus);
+							mVojsonObj.put("orderStatusKey", orderStatusKey == null ? JSONObject.NULL : orderStatusKey);
+							mVojsonObj.put("status", status == null ? JSONObject.NULL : status);
+							mVojsonObj.put("toolCode", toolCode == null ? JSONObject.NULL : toolCode);
+							mVojsonObj.put("loveCode", loveCode == null ? JSONObject.NULL : loveCode);
+							mVojsonObj.put("tax", tax == null ? JSONObject.NULL : tax);
+							mVojsonObj.put("payBy", payBy == null ? JSONObject.NULL : payBy);
+							mVojsonObj.put("cancel", cancel == null ? JSONObject.NULL : cancel);
+							mVojsonObj.put("internalNumber", internalNumber == null ? JSONObject.NULL : internalNumber);
+							mVojsonObj.put("reprintNumber", reprintNumber == null ? JSONObject.NULL : reprintNumber);
+							mVojsonObj.put("takeTime", takeTime == null ? JSONObject.NULL : takeTime);
+							mVojsonObj.put("orderBy", orderBy == null ? JSONObject.NULL : orderBy);
+							mVojsonObj.put("randomNum", randomNum == null ? JSONObject.NULL : randomNum);
+							mVojsonObj.put("mOrderStatus", mOrderStatus == null ? JSONObject.NULL : mOrderStatus);
+							mVojsonObj.put("sellNo", sell_no == null ? JSONObject.NULL : sell_no);
+							mVojsonObj.put("mealNum", mealNum == null ? JSONObject.NULL : mealNum);
+							List<OrderPhoneDetailVO> opdList = dSvc.findByOrderNum(ordersNum);
+							fillDetailVOToList(opdList, dList);
+							returnObj.put("blnStatus", true);
+							returnObj.put("strMsg", "查詢成功");
+						}
+					}
 				} else {
 					returnObj.put("blnStatus", false);
-					returnObj.put("strMsg", "掃描失敗,訂單不存在");
+					returnObj.put("strMsg", "查詢失敗,訂單不存在或已刪除");
 				}
 			} else {
 				returnObj.put("blnStatus", false);
-				returnObj.put("strMsg", "掃描失敗,無效的訂單");
+				returnObj.put("strMsg", "查詢失敗,訂單不存在或已刪除");
 			}
 			JSONObject dataJsonObj = new JSONObject();
 			JSONArray ja = new JSONArray(dList);
