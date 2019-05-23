@@ -4,8 +4,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,7 +24,7 @@ import com.web.util.Configproperties;
 
 
 @Controller 
-@RequestMapping("/OrderAPIService")
+@RequestMapping("/orderphone/OrderAPIService")
 public class OrderAPIService {
 	@Autowired
 	 private Configproperties Configproperties; //引用统一的参数配置类
@@ -37,14 +35,24 @@ public class OrderAPIService {
 	@Autowired
 	private OrderPhoneDetailService dSvc;
 	
-	@RequestMapping(value="/" ,method = RequestMethod.GET)
-	public void getisPaidorder() {
+	@RequestMapping(value="/test" ,method = RequestMethod.GET)
+	@ResponseBody
+	public JSONObject getisPaidorder2() {
 		System.out.println("in");
+		JSONObject returnObj = new JSONObject();
+		String a="test";
+		try {
+			returnObj.put("aa", a);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return returnObj;
+		
 	}
 	
 	@RequestMapping(value="/isPaidorder" ,method = RequestMethod.GET)
 	@ResponseBody
-	@Produces({ MediaType.APPLICATION_JSON + ";charset=UTF-8" })
 	public JSONObject getisPaidorder(@RequestParam("uuid") String uuid ) {
 		JSONObject returnObj = new JSONObject();
 		JSONObject dataJsonObj = new JSONObject();
@@ -76,9 +84,9 @@ public class OrderAPIService {
 	
 	@RequestMapping(value="/getorder" ,method = RequestMethod.GET)
 	@ResponseBody
-	@Produces({ MediaType.APPLICATION_JSON + ";charset=UTF-8" })
-	public String getOrder(@RequestParam("uuid") String uuid) {
+	public JSONObject getOrder(@RequestParam("uuid") String uuid) {
 		MasterVO mVo = new MasterVO();
+		JSONObject dataJsonObj = new JSONObject();
 		JSONObject mVojsonObj = new JSONObject();
 		JSONObject returnObj = new JSONObject();
 		List<DetailVO> dList = new ArrayList<DetailVO>();
@@ -200,7 +208,7 @@ public class OrderAPIService {
 				returnObj.put("blnStatus", false);
 				returnObj.put("strMsg", "查詢失敗,訂單不存在或已刪除");
 			}
-			JSONObject dataJsonObj = new JSONObject();
+			
 			JSONArray ja = new JSONArray(dList);
 			dataJsonObj.put("returnMsg", returnObj);
 			dataJsonObj.put("detail", ja);
@@ -214,7 +222,7 @@ public class OrderAPIService {
 			e.printStackTrace();
 		}
 
-		return jsonStr;
+		return dataJsonObj;
 	}
 
 	protected void fillDetailVOToList(List<OrderPhoneDetailVO> opdList, List<DetailVO> dList) {

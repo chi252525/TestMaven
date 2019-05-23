@@ -10,6 +10,12 @@
 	response.setDateHeader("Expires", 0);
 	response.flushBuffer();
 %>
+<%
+	if(request.getParameter("message")!=null){
+	String	message=request.getParameter("message");
+	pageContext.setAttribute("message",message);
+	}
+%>
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -131,11 +137,8 @@ $.getJSON("${contextPath}/resource/json/product.json", function(json){
 	          $(this).off("touchmove");
 	      });
 	  });
-	  <c:if test="${not empty remindMsgs}">
-// 	    <c:forEach var="remindmessage" items="${remindMsgs}">
-// 	      toastr.info("${remindmessage}");
-// 	    </c:forEach>
- toastr.info("${requestScope.remindMsgs}");
+	  <c:if test="${not empty message}">
+	      toastr.success("${message}");
   </c:if>
 	</script>
 </html>

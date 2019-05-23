@@ -147,9 +147,38 @@
 
 <script type="text/javascript">
  $(document).ready(function() { 
+	 let productAmount=0;
+	 $.ajax({
+         type: "POST",
+         cache: false,
+         contentType:'application/json;charset=UTF-8',
+         url: "<%=request.getContextPath()%>/productEShop/getproductAmount",
+         data: JSON.stringify({ "productid": '${requestScope.productid}'
+         }),
+         dataType: 'json',
+         beforeSend: function (xhr) {
+         }
+     }).done(function (resjobj, textStatus) {
+//          console.log(JSON.stringify(resjobj, undefined, 2));
+         var res=resjobj.map;
+         productAmount=res.productAmount;
+//          console.log("productAmount="+productAmount);
+     }).fail(function (jqXHR, textStatus, errorThrown) {
+//          console.log('jqXHR.responseText: ' + jqXHR.responseText);
+         	console.log('jqXHR.status: ' + jqXHR.status);
+        	 console.log('jqXHR.readyState'+ jqXHR.readyState);
+        	 console.log('jqXHR.statusText'+jqXHR.statusText);
+        	 console.log('textStatus'+textStatus);
+        	 console.log('errorThrown'+errorThrown);
+     }).always(function (jqXHR, textStatus) {
+     });
+	 
+	 
+	 
+	 
  	$("#add").click(function() { 
  		var qty = parseInt($('#qty').text()) 
- 		if (qty >= 5) { 
+ 		if (qty >= productAmount) { 
  			toastr.warning("已達單次放入購物車上限"); 
  		} else { 
  			var qty_now = parseInt($('#qty').text()) + 1; 

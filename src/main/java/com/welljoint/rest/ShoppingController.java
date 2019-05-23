@@ -1,16 +1,11 @@
 package com.welljoint.rest;
 import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.IdentityHashMap;
-import java.util.Iterator;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,14 +17,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.web.util.Configproperties;
 import com.welljoint.entity.ProductVO;
 import com.welljoint.service.MyCart;
+@Scope("prototype")
 @Controller
 @RequestMapping("/Cart")
 public class ShoppingController {
 	@Autowired
-	 private Configproperties Configproperties; //引用统一的参数配置类
-	
+	private Configproperties Configproperties; //引用统一的参数配置类
 	@RequestMapping(value="/add",method = RequestMethod.POST)
-	public String addToCart(HttpServletRequest req,@ModelAttribute ProductVO pVO) {
+	public String addToCart(HttpServletRequest req,@ModelAttribute ProductVO pVO,RedirectAttributes attr) {
 		//==========接收屬性並處理字串=============
 		String shoppingNote = "";
 		Enumeration en=req.getParameterNames();
@@ -65,16 +60,18 @@ public class ShoppingController {
 		req.getSession().setAttribute("shoppingList", myCart.showMyCart());
 		req.getSession().setAttribute("totalPrice", myCart.getTotalPrice());
 		req.getSession().setAttribute("totalQty", myCart.getTotalQty());
+		attr.addAttribute("message", "成功加入購物車"); 
 		return "redirect:/frontstage/productEShop.jsp"; 
 	}
 	
 	@RequestMapping(value="/delete/{id}",method = RequestMethod.GET)
-	public String deletefromCart(HttpServletRequest req,@PathVariable("id") String id) {
+	public String deletefromCart(HttpServletRequest req,@PathVariable("id") String id,RedirectAttributes attr) {
 		MyCart myCart=(MyCart)req.getSession().getAttribute("myCart");
 		myCart.delProduct(Integer.parseInt(id));
 		req.getSession().setAttribute("shoppingList", myCart.showMyCart());
 		req.getSession().setAttribute("totalPrice", myCart.getTotalPrice());
 		req.getSession().setAttribute("totalQty", myCart.getTotalQty());
+		attr.addAttribute("message", "成功刪除商品"); 
 		return "redirect:/frontstage/Cart.jsp"; 
 	}
 	

@@ -3,11 +3,12 @@
 <%@ page import="java.text.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.welljoint.*"%>
-<%-- <%  --%>
-<!-- // ArrayList<ProductVO> shoppingList=(ArrayList<ProductVO>)session.getAttribute("shoppingList"); -->
-<!-- // pageContext.setAttribute("shoppingList",shoppingList); -->
-<!-- // System.out.println("shoppingList="+shoppingList); -->
-<%-- %> --%>
+<%
+	if(request.getParameter("message")!=null){
+	String	message=request.getParameter("message");
+	pageContext.setAttribute("message",message);
+	}
+%>
 <!DOCTYPE html>
 <html lang="zh-Hant">
   <head>
@@ -198,10 +199,8 @@ $(function() {
 	$(document).ready(
 	
 	function() {
-		<c:if test="${not empty remindMsgs}">
-		<c:forEach var="remindmessage" items="${remindMsgs}">
-		toastr.info("${remindmessage}");
-		</c:forEach>
+		<c:if test="${not empty message}">
+	      toastr.success("${message}");
 		</c:if>
 	});
 	$(document).ready(function() {

@@ -101,19 +101,19 @@ OrdersPhoneVO opVO=(OrdersPhoneVO)session.getAttribute("shoppingorder");
 												<div class="attr_css col-12">
 												<input type="radio" name="payBy" id="payByCash"  value="現金" checked >
 												<label for="payByCash" >現金</label>
-												<input type="radio" name="payBy" id="ApplePay"  value="現金"  >
+												<input type="radio" name="payBy" id="ApplePay"  value="ApplePay"  >
 												<label for="ApplePay" >ApplePay</label>
-												<input type="radio" name="payBy" id="GooglePay"  value="現金"  >
+												<input type="radio" name="payBy" id="GooglePay"  value="GooglePay"  >
 												<label for="GooglePay" >GooglePay</label>
 												</div>
 											</div>
 
 											<div class="form-group">
-												<small class="note">* </small><label for="taketime1">預計取餐日期:</label>
-										<input name="taketime1" class="form-control" id="taketime1" value="預計起餐日期" type="text" >
+												<small class="note">* </small><label for="taketimeDate">預計取餐日期:</label>
+										<input name="taketimeDate" class="form-control" id="taketimeDate" required value="<%=opVO.getTaketimeDate()%>" type="text" >
 											</div>
-											<div class="form-group"><small class="note">* </small><label for="taketime2">預計取餐時間:</label>
-										<input name="taketime2" class="form-control" id="taketime2" value="預計取餐時間" type="text" >
+											<div class="form-group"><small class="note">* </small><label for="taketimeTime">預計取餐時間:</label>
+										<input name="taketimeTime" class="form-control" id="taketimeTime" required value="<%=opVO.getTaketimeTime()%>" type="text" >
 											</div>
 											<div class="form-group"><small class="note">* </small><label for="orderstatus">取餐方式:</label>
 										<input type="text" id="orderstatus" name="orderstatus"class="form-control" value="<%=opVO.getOrderStatus()%>" readonly  >
@@ -124,7 +124,7 @@ OrdersPhoneVO opVO=(OrdersPhoneVO)session.getAttribute("shoppingorder");
 										<input type="text" value="" id="orderer" maxlength="40" name="orderer" class="form-control" placeholder="選填 e.g.王先生">
 											</div>	
 											<div class="form-group"><small class="note">* </small><label for="phoneNum">訂購人手機:</label>
-										<input type="text" id="phoneNum" value="0912456123" name="phoneNum"class="form-control" value="" placeholder="格式:09XXXXXXXX" pattern="[0-9]{10}" title="09XXXXXXXX">
+										<input type="text" id="phoneNum" value="0912456123" required name="phoneNum"class="form-control" value="" placeholder="格式:09XXXXXXXX" pattern="[0-9]{10}" title="09XXXXXXXX">
 											</div>
 											<div class="form-group"><label for="customerValue">統一編號:</label>
 										<input type="text"  class="form-control" name="customerValue" id="customerValue" placeholder="選填,限8位數字" pattern="[0-9]{8}">
@@ -157,7 +157,7 @@ OrdersPhoneVO opVO=(OrdersPhoneVO)session.getAttribute("shoppingorder");
 					<h4 class="modal-title">總計NT${totalPrice} 元</h4>
 				</div>
 				<div class="modal-body">
-<%-- 						<p>預計<%=taketime1%> <%=taketime2%>取餐</p> --%>
+<%-- 						<p>預計<%=taketimeDate%> <%=taketimeTime%>取餐</p> --%>
 					<p>確定要送出訂單嗎?</p>
 				</div>
 				<div class="modal-footer">
@@ -167,6 +167,7 @@ OrdersPhoneVO opVO=(OrdersPhoneVO)session.getAttribute("shoppingorder");
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
+	 <script src="<%=request.getContextPath()%>/resource/js/taketime.js"></script>
     <script type="text/javascript">
 	    $(document).ready(function() {
 	    	var takeinfo=null;
@@ -204,26 +205,6 @@ OrdersPhoneVO opVO=(OrdersPhoneVO)session.getAttribute("shoppingorder");
           	
           });
 	    });
-        $('#taketime1').datepicker({
-        	startDate: '0',
-            format: 'yyyy-mm-dd',
-            endDate: '+3d',
-            daysOfWeekDisabled: "0",
-            disableTouchKeyboard:true,
-            language:'zh-TW',
-            todayBtn:'linked',
-            clearBtn:true,
-            orientation: "bottom auto",
-            toggleActive: true,
-            showOnFocus:true,
-            todayHighlight:true,
-            autoclose: true,
-        });
-        $( "#taketime2" ).timeDropper(
-          { format:'HH:mm',
-            setCurrentTime:false,
-          }
-        );
 
     </script>
   </body>

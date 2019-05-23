@@ -1,13 +1,14 @@
 package com.welljoint.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.welljoint.entity.User;
 import com.welljoint.service.LoginService;
-
+@Scope("prototype")
 @Controller  //註解為控制器
 @RequestMapping(value="/login")    //截獲帶有/login的請求
 public class LoginController {

@@ -56,8 +56,6 @@ pageContext.setAttribute("webprojectName",webprojectName);
 		 </div>
 	</div>
        <!-- /clear-box -->
-    <!-- Footer -->
-<%--     <%@include file="/templete/footer.jsp" %> --%>
   </body>
  <div class="modal fade" tabindex="3" role="dialog" id="clearModal">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -78,6 +76,23 @@ pageContext.setAttribute("webprojectName",webprojectName);
 </div><!-- /.modal -->
 </html>
      <script type="text/javascript">
+     
+     var timer = setInterval(function () {
+    	    if(localStorage.getItem('${contextPath}')){
+    	        var name = localStorage.getItem('${contextPath}');
+    	        var nameObj = JSON.parse(name);
+    	        console.log('nameObj='+nameObj);
+    	        console.log(new Date().getTime() - nameObj.time);
+    	        if(new Date().getTime() - nameObj.time >= nameObj.expire){
+    	            localStorage.removeItem('${contextPath}')
+    	        }
+    	    }else{
+    	    	toastr.warning('訂單紀錄已失效');
+    	        clearInterval(timer);
+    	    }
+    	},1000)
+     
+     
      function onLoad(){
     	 if(typeof(Storage)=="undefined"){
     		 alert("Sorry,您的瀏覽器不支援WebStorge 建議使用IE+8,Firefox,Opera,Chrome,Safari");
@@ -122,6 +137,7 @@ pageContext.setAttribute("webprojectName",webprojectName);
     	
 		//將資料庫的陣列取出
     	    let itemarrayJason = JSON.parse(localStorage.getItem('${contextPath}'));
+		console.log('itemarrayJason='+itemarrayJason);
     	  //假如資料庫內的陣列有內容存在，執行以下的程式碼
     	    if (itemarrayJason.length !== 0) {
     	    	//對陣列裡的每個元素執行函式
@@ -141,6 +157,7 @@ pageContext.setAttribute("webprojectName",webprojectName);
     			  content+="<p class=\'card-text text-center\' >付款狀態:<span id=\'paymentStatus"+i+"\'></span></p>";
     			  content+="<img style=\'display:block; margin:auto;\' src=\'"+orderobj.mealQrcode+"\' id=\'mealQrcode\'>";
     			  content+="<p class=\'card-text text-center\' >請持QRCode至櫃台結帳</p>";
+    			  content+='<button type="button">刪除</button>';
     			  content+="<div class=\'checkOrder\'><div id=\'headingOne\'>";
     			  content+="<a href=\'#\' class=\'btn btn-warning\' data-toggle=\'collapse\' data-target=\'#collapseOne"+i+"\' aria-expanded=\'true\' aria-controls=\'collapseOne"+i+"\'>";
     			  content+="查看明細</a></div>";
@@ -263,7 +280,6 @@ pageContext.setAttribute("webprojectName",webprojectName);
             	 console.log('textStatus'+textStatus);
             	 console.log('errorThrown'+errorThrown);
          }).always(function (jqXHR, textStatus) {
-             //$('#loding_spinner').fadeOut(300);
          });
     	 
      }

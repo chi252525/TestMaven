@@ -1,24 +1,24 @@
 package com.welljoint.rest;
-
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import org.springframework.web.servlet.support.RequestContextUtils;
 import com.web.util.Configproperties;
 import com.welljoint.entity.MealNum_pofferVO;
 import com.welljoint.entity.OrderPhoneDetailVO;
@@ -31,7 +31,7 @@ import com.welljoint.service.OrdersPhoneService;
 import com.welljoint.service.ProductService;
 
 
-
+@Scope("prototype")
 @Controller 
 @RequestMapping("/")
 public class OrderController {
@@ -44,18 +44,46 @@ public class OrderController {
 	@Autowired
 	private ProductService pSvc;
 	private static final Logger LOGGER = LoggerFactory.getLogger(OrderController.class);
+	
+	@RequestMapping({"/index"})
+	public String index(String lang, HttpServletRequest request) {
+		Locale locale = RequestContextUtils.getLocaleResolver(request) .resolveLocale(request);  
+//	    System.out.println(locale.getLanguage());
+	    if (lang != null) {
+	        if (lang.equals("zh_TW")) {
+	            request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, new Locale("zh","TW"));
+	        }else if (lang.equals("en_US")) {
+	            request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, new Locale("en","US"));
+	        }
+	        }
+	    return "index"; 
+	}
+	
+
 	@RequestMapping(value="/Order/productEShop" ,method = RequestMethod.POST)
-    public String getInit(HttpSession session,@ModelAttribute  OrdersPhoneVO opVO){
-		
+    public String getInit(HttpSession session, OrdersPhoneVO opVO){
 		session.setAttribute("shoppingorder", opVO);
-			return "redirect:/frontstage/productEShop.jsp";
+		return "redirect:/frontstage/productEShop.jsp";
     }
 	
 	@RequestMapping(value="/Order/addOrder" ,method = RequestMethod.POST)
-    public String addOrder(HttpServletRequest req,@ModelAttribute  OrdersPhoneVO opVO){ 
+    public String addOrder(HttpServletRequest req,  OrdersPhoneVO opVO){ 
 		
 		OrdersPhoneVO initopVO=(OrdersPhoneVO)req.getSession().getAttribute("shoppingorder");
+		String str_taketime=opVO.getTaketimeDate()+" "+opVO.getTaketimeTime(); 
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		java.util.Date date_taketime;
+		try {
+			date_taketime = sdf.parse(str_taketime);
+			opVO.setTakeTime(date_taketime.getTime());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		opVO.setOrderStatus(initopVO.getOrderStatus());
+		String orderStatusKey=getOrderStatusKey(initopVO.getOrderStatus());
+		opVO.setOrderStatusKey(orderStatusKey);
 		opVO.setInternalNumber(initopVO.getInternalNumber());
 		opVO.setOrderDate(new Timestamp(System.currentTimeMillis()));//訂購時間取現在
 		opVO.setStore(initopVO.getStore());
@@ -72,7 +100,7 @@ public class OrderController {
 		opVO.setName(storeVO.getName());
 		opVO.setStore(storeVO.getStore());
 		opVO.setValue(storeVO.getValue());
-		
+	
 		MyCart cart=(MyCart)req.getSession().getAttribute("myCart");
 		//================================將購物車內容放置detailVO================================
 		opVO=addCarttodetail(cart,opVO);
@@ -123,7 +151,17 @@ public class OrderController {
 		}
 		return resjobj;
 	}
-	
+	public String getOrderStatusKey(String orderStatus) {
+		String orderStatusKey=null;
+		if(orderStatus.equals("內用")) {
+			orderStatusKey="Z";
+		}else if(orderStatus.equals("外帶")) {
+			orderStatusKey="Y";
+		}else {
+			orderStatusKey="";
+		}
+	 return orderStatusKey;
+	}
 	public String getQrcode(HttpServletRequest req) {
 		String s = UUID.randomUUID().toString();
 		String uuid = s.substring(0, 8) + s.substring(9, 13);

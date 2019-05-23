@@ -6,7 +6,7 @@
 	version="3.0">
 	<display-name>Servlet 3.0 Web Application</display-name>
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index</welcome-file>
 	</welcome-file-list>
 
 	<!-- 自定義監聽器 客製化參數 -->
@@ -58,7 +58,10 @@
 		<servlet-name>springmvc</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
+	<servlet-mapping>
+		<servlet-name>springmvc</servlet-name>
+		<url-pattern>/index</url-pattern>
+	</servlet-mapping>
 	<!-- 增加中文亂碼過濾器 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
@@ -94,6 +97,6 @@
 		<!-- 内部错误 -->
 		<error-code>500</error-code>
 		<location>/WEB-INF/errorpage/500.jsp</location>
-	</error-page> 
+	</error-page>
 
 </web-app>
