@@ -40,6 +40,10 @@ public class OrdersPhoneVO implements Serializable{
 	private String randomNum;
 	private String sell_No;
 	private String TC8_ReturnMessage;
+	//一開始訂購參數需要
+	private String taketimeDate;
+	private String taketimeTime;
+	
 	
 	public Set<OrderPhoneDetailVO> getOpdVOs() {
 		return opdVOs;
@@ -238,6 +242,18 @@ public class OrdersPhoneVO implements Serializable{
 	}
 	public void setTC8_ReturnMessage(String tC8_ReturnMessage) {
 		TC8_ReturnMessage = tC8_ReturnMessage;
+	}
+	public String getTaketimeDate() {
+		return taketimeDate;
+	}
+	public void setTaketimeDate(String taketimeDate) {
+		this.taketimeDate = taketimeDate;
+	}
+	public String getTaketimeTime() {
+		return taketimeTime;
+	}
+	public void setTaketimeTime(String taketimeTime) {
+		this.taketimeTime = taketimeTime;
 	}
 
 

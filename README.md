@@ -1,4 +1,16 @@
+# mealorder_front_mobilej 
+使用SpringMVC+Spring+Hibernate的版本
 
+## Frameworks and Tools
+
+* Java&IDE: JDK8 EclipsePhoton
+* Backend:  SpringMVC3.2.8 Spring3.2.8 Hibernate4.2.11 (Configured by annotation)
+* Frontend: Javascript JQuery Ajax (Client-side and server-side communicated by JSON)
+* Database: SqlServer2014 Express
+* Web Server: Tomcat 9
+* Build Tool: Maven
+* Windows：Win10
+* Other:C3p0(database connection pool) JUnit Log4j Jackson FastJson 
 # TestMarven
 使用maven搭建SSH專案(spring+springmvc+Hibernate)
 

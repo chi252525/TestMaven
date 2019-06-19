@@ -26,9 +26,4 @@
 	<script src="<%=request.getContextPath()%>/resource/js/moment-with-locales.min.js"></script>
 	<!-- all page css -->
 	<link href="<%=request.getContextPath()%>/resource/css/main.css" rel="stylesheet">
-	<!--    jquery.i18n.properties.js -->
-	<script src="<%=request.getContextPath()%>/resource/js/jquery.i18n.properties.js"></script>
-	<!-- loader css -->
-	<link href="<%=request.getContextPath()%>/resource/css/loader.css" rel="stylesheet">
-	<!--  loader.js -->
-	<script src="<%=request.getContextPath()%>/resource/js/loader.js"></script>
+	

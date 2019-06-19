@@ -6,6 +6,7 @@
 <%@ page import="java.text.*"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="com.welljoint.entity.*"%>
+<jsp:useBean id="dateValue" class="java.util.Date"/>
 <%
 String webprojectName =request.getContextPath().substring(1);
 %>
@@ -36,7 +37,8 @@ response.flushBuffer();
 	  		  <div class="card-header">領餐單號</div>
 			  <div class="card-body">
 				   <p class="card-text" >取餐時間:
-					   	<span id="takeTime"><fmt:formatDate value="${successOrder.takeTime}" pattern="yyyy-MM-dd HH:mm" /></span>
+				   <jsp:setProperty name="dateValue" property="time" value="${successOrder.takeTime}"/>
+					   	<span id="takeTime"><fmt:formatDate value="${dateValue}" pattern="yyyy-MM-dd HH:mm"/></span>
 				  	</p>
 				    <h1 class="card-title" id="mealNum">${successOrder.mealNum}</h1>
 				    <p >
@@ -124,7 +126,7 @@ response.flushBuffer();
 			}; 
 			//處理明細部分
 			var storageArray = [];
-			for(var i=0;i<2;i++){
+			for(var i=0;i<'${successOrderdetil.size()}';i++){
 				   let productImg = $("#productImg"+i).attr("data-productImg");
 				   let productname = $("#productname"+i).attr("data-productname");
 				   let attrnote = $("#attrnote"+i).attr("data-attrnote");
@@ -169,14 +171,16 @@ response.flushBuffer();
 					'invoicesTotal' : $("#invoicesTotal").text(),
 					'totalQty' : $("#totalQty").text(),
 						},
-					'detail': storageArray
+					'detail': storageArray,
+					'time':new Date().getTime(),
+					'expire':5000,
 			};
 				//將新物件加入我們的陣列
 			    itemstorageArray.push(itemObject);
 				
 			  //將陣列修改成JSON字串
 			    itemstringJson = JSON.stringify(itemstorageArray);
-// 			  console.log(itemstringJson);
+			  console.log(itemstringJson);
 			    //將處理後的JSON字串更新到資料庫中
 			    localStorage.setItem(`${contextPath}`, itemstringJson);
      }

@@ -62,8 +62,10 @@ public class CustomListener implements ServletContextListener {
 		LOGGER.info("contextPath:{},rootPath:{}", contextPath, rootPath);
 		// =====================撈資料庫中啟用中的店家資料=====================
 		storeSvc= applicationContext.getBean(StoreInformationService.class);
+		if(storeSvc.findByStatus(true)!=null) {
 		StoreInformationVO storeVO=storeSvc.findByStatus(true);
 		servletContext.setAttribute("activeStoreVO", storeVO);
+		}
 		// =====================撈資料庫中產品資料=====================
 		getAllproducttoJSON(servletContext);
 		// =====================撈資料庫中Banner資料=====================
