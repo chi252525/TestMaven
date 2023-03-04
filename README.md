@@ -11,7 +11,7 @@
 * Build Tool: Maven
 * Windows：Win10
 * Other:C3p0(database connection pool) JUnit Log4j Jackson FastJson 
-# TestMarven
+# TestMaven
 使用maven搭建SSH專案(spring+springmvc+Hibernate)
 
 SqlServer sql
