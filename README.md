@@ -1,4 +1,4 @@
-# mealorder_front_mobilej 
+# MobileOrderSystem-BackEnd
 使用SpringMVC+Spring+Hibernate的版本
 
 ## Frameworks and Tools
